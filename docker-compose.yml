@@ -1,21 +1,35 @@
-version: "3"
+version: "3.8"
 
 services:
-  ###> doctrine/doctrine-bundle ###
-  database:
-    image: s:${POSTGRES_VERSION:-14}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: vortex
+    depends_on:
+      - database
+    ports:
+      - 80:80
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
-
-volumes:
-  ###> doctrine/doctrine-bundle ###
-  db-data:
-###< doctrine/doctrine-bundle ###
+      - ./:/var/www/html/:cached
+  database:
+    image: "mysql:8.0"
+    container_name: database
+    environment:
+      MYSQL_ROOT_PASSWORD: root #password that will be set for the root superuser account
+      MYSQL_DATABASE: vortex #app_db
+      # MYSQL_USER:  #optional
+      # MYSQL_PASSWORD:  #optional
+    ports:
+      - 3306:3306
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    links:
+      - database
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1

@@ -1,0 +1,35 @@
+FROM composer:2.0 AS vendor
+
+COPY composer.json composer.lock symfony.lock /app/
+
+# RUN composer install --optimize-autoloader --no-dev
+
+FROM php:8.1.12-apache
+
+# COPY --from=vendor /app/vendor/ /var/www/html/vendor/
+COPY . /var/www/html/
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libicu-dev \
+    libzip-dev \
+    libpq-dev \
+    && docker-php-ext-install \
+    intl \
+    zip \
+    pdo_pgsql \
+    pdo_mysql
+
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
+
+# Set the working directory
+WORKDIR /var/www/html
+
+# Change ownership of the project directory to www-data
+RUN chown -R www-data:www-data /var/www/html
+
+# Expose port 80
+EXPOSE 80

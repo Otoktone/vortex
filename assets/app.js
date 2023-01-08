@@ -10,3 +10,12 @@ import './styles/global.scss';
 
 // start the Stimulus application
 import './bootstrap';
+
+// REACT
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Home from './js/components/Home';  // import the Home component
+
+const root = ReactDOM.createRoot(document.getElementById('root'));  // create a root element
+root.render(<Home />);  // render the Home component to the root element
+

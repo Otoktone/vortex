@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- HTML Meta Tags -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- Compatibilité IE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Alexandre Desmot| Conception Web | Developpeur Web | Integration | Design | Vannes">
+    <meta name="author" content="Alexandre DESMOT">
+    {# <meta name="image" property="og:image" content="{{ asset('build/images/thumbnail.png') }}"> <!-- A VERIFIER --> #}
+
+    <link rel="icon" type="image/png" href="{{ asset('build/images/icons/favicon.png') }}">
+
+    <title>{% block title %}Vortex | Alexandre Desmot{% endblock %}</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    {% block body %}{% endblock %}
+</body>
+</html>

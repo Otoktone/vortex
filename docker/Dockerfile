@@ -27,7 +27,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www/html/
 
-COPY docker/apache.conf /etc/apache2/sites-enabled/000-default.conf
+COPY docker/apache/apache.conf /etc/apache2/sites-enabled/000-default.conf
+COPY docker/php/php.ini /etc/php/
 
 # Set the working directory
 WORKDIR /var/www/html

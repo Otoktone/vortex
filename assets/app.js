@@ -15,7 +15,8 @@ import './bootstrap';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Home from './js/components/Home';  // import the Home component
+import { Vortex } from 'react-loader-spinner';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));  // create a root element
 root.render(<Home />);  // render the Home component to the root element
-
+root.render(<Vortex />)

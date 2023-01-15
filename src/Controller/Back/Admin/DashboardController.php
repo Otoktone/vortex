@@ -95,8 +95,6 @@ class DashboardController extends AbstractDashboardController
         return parent::configureUserMenu($user)->setAvatarUrl($imagePath)->setName($user->getUsername())->addMenuItems([
             MenuItem::linkToRoute('Mon Profil', 'fa fa-id-card', '...', ['...' => '...']),
             MenuItem::linkToRoute('Paramètres', 'fa fa-user-cog', '...', ['...' => '...']),
-            MenuItem::section(),
-            MenuItem::linkToLogout('Déconnexion', 'fa fa-sign-out'),
         ]);;
     }
 }

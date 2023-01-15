@@ -89,4 +89,11 @@ class UserCrudController extends AbstractCrudController
             $form->getData()->setPassword($hash);
         };
     }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('')
+            ->setEntityLabelInPlural('Utilisateur');
+    }
 }

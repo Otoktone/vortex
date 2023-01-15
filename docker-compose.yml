@@ -18,11 +18,12 @@ services:
     volumes:
       - ./:/var/www/html/:cached
   database:
-    image: "mysql:8.0"
+    image: mysql:8.0
+    restart: always
     container_name: database
     environment:
-      MYSQL_ROOT_PASSWORD: root #password that will be set for the root superuser account
-      MYSQL_DATABASE: vortex #app_db
+      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD} #password that will be set for the root superuser account
+      MYSQL_DATABASE: ${DATABASE_NAME} #app_db
       # MYSQL_USER:  #optional
       # MYSQL_PASSWORD:  #optional
     ports:

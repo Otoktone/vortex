@@ -9,6 +9,11 @@
 // Pages
 // Themes
 
+@import './assets/styles/utils/variables.scss';
+@import './assets/styles/components/form.scss';
+@import './assets/styles/layouts/header.scss';
+@import './assets/styles/pages/register.scss';
+
 body {
     margin: 0;
     padding: 0;
@@ -65,5 +70,3 @@ h1, p {
         transform: rotate(360deg);
     }
 }
-
-@import './assets/styles/layouts/header.scss';

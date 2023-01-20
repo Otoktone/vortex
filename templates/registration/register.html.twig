@@ -3,20 +3,26 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+    <section id="register">
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
 
-    <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username, {'label': 'Pseudo :'}) }}
-        {{ form_row(registrationForm.email, {'label': 'Email :'}) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password :'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        {{ form_start(registrationForm) }}
+            <div class="register_logo" >
+                <img src="{{ asset('build/images/logos/register_logo.png') }}" alt="logo vortex register form">
+            </div>
+            {{ form_row(registrationForm.username) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword) }}
+            <div class="agree-terms">
+                {{ form_row(registrationForm.agreeTerms) }}
+                <span><a href="">Agree terms</a></span>
+            </div>
+            <button type="submit" class="btn">Register</button>
+            <div class="sign-in">
+                <span>Already an account ? </span><a href="{{ path('app_login') }}">Sign in</a>
+            </div>
+        {{ form_end(registrationForm) }}
+    </section>
 {% endblock %}

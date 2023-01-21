@@ -1,6 +1,7 @@
 // FORM
 form {
-    padding: 40px;
+    @include input-checkbox;
+    padding: 70px 40px 40px 40px;
     width: 320px;
     margin: auto;
     background-color: $dark;
@@ -16,9 +17,14 @@ form {
                 list-style-type: none;
                 position: absolute;
                 top: -115px;
-                left: 0;
+                left: -25px;
                 width: 100%;
                 width: 320px;
+                font-size: 12px;
+                color: $perfume;
+                text-align: center;
+                opacity: 0.8;
+                font-weight: 600;
             }
         }
         display: flex;
@@ -27,9 +33,24 @@ form {
             width: 100%;
             padding: 10px;
             border: none;
+            color: $lagoon;
+            background-color: $dark;
+            font-weight: 600;
+            z-index: 99;
             &:focus-visible {
                 outline: none;
             }
+        }
+        // TODO
+        input:autofill {
+            color: $lagoon;
+            background-color: $dark;
+            font-weight: 600;
+        }
+        input:-webkit-autofill {
+            color: $lagoon;
+            background-color: $dark;
+            font-weight: 600;
         }
     }
 
@@ -42,37 +63,62 @@ form {
             top: -6rem;
             left: -6rem;
             width: 10rem;
+            z-index: 0;
         }
     }
 
-    .agree-terms {
+    .register_password {
+        position: relative;
+        padding: 0;
+        div {
+            width: 100%;
+        }
+        i {
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            z-index: 100;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .register_terms {
         display: flex;
         align-items: center;
-        padding: 0 0 10px 15px;
+        padding: 0 0 20px 15px;
         div {
             padding: 0;
         }
         a {
             margin-left: 5px;
-            text-decoration: none;
+            text-decoration: underline;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.8;
+            color: $purple;
             &:hover {
                 color: $lagoon;
-                opacity: 0.4;
+                opacity: 0.6;
             }
         }
     }
 
-    .sign-in {
-        padding: 0 20px 10px 20px;
+    .register_login {
+        padding: 30px 20px 10px 20px;
         display: flex;
         align-items: center;
         justify-content: center;
         a {
             margin-left: 5px;
-            text-decoration: none;
+            text-decoration: underline;
+            font-weight: 600;
+            opacity: 0.8;
+            color: $purple;
             &:hover {
                 color: $lagoon;
-                opacity: 0.4;
+                opacity: 0.6;
             }
         }
     }
@@ -83,7 +129,7 @@ form {
         cursor: pointer;
         &:hover {
             color: $white;
-            opacity: 0.4;
+            opacity: 0.6;
             background: linear-gradient(45deg, transparent 5%, $lagoon 5%);
         }
     }

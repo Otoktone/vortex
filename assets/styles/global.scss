@@ -9,10 +9,22 @@
 // Pages
 // Themes
 
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
 @import './assets/styles/utils/variables.scss';
+@import './assets/styles/utils/mixins.scss';
 @import './assets/styles/components/form.scss';
 @import './assets/styles/layouts/header.scss';
 @import './assets/styles/pages/register.scss';
+@import './assets/styles/pages/login.scss';
+
+
+* {
+    font-family: 'Ubuntu', sans-serif;
+}
 
 body {
     margin: 0;

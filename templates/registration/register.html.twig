@@ -14,13 +14,19 @@
             </div>
             {{ form_row(registrationForm.username) }}
             {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.plainPassword) }}
-            <div class="agree-terms">
-                {{ form_row(registrationForm.agreeTerms) }}
+            <div class="register_password">
+                {{ form_row(registrationForm.plainPassword) }}
+                <i class="fa-solid fa-eye"></i>
+            </div>
+            <div class="register_terms">
+                <label class="container">
+                    <input class="agreeTerms" name="agreeTerms"  type="checkbox" checked="">
+                    <span class="checkmark"></span>
+                </label>
                 <span><a href="">Agree terms</a></span>
             </div>
             <button type="submit" class="btn">Register</button>
-            <div class="sign-in">
+            <div class="register_login">
                 <span>Already an account ? </span><a href="{{ path('app_login') }}">Sign in</a>
             </div>
         {{ form_end(registrationForm) }}

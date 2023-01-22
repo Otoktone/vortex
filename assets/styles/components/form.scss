@@ -4,7 +4,7 @@ form {
     padding: 70px 40px 40px 40px;
     width: 320px;
     margin: auto;
-    background-color: $dark;
+    background-color: $shadow;
     border-radius: 5px;
     box-shadow: 0 0 10px #000;
     color: rgba(215, 215, 215, 0.75);
@@ -34,23 +34,12 @@ form {
             padding: 10px;
             border: none;
             color: $lagoon;
-            background-color: $dark;
+            background-color: $shadow;
             font-weight: 600;
             z-index: 99;
             &:focus-visible {
                 outline: none;
             }
-        }
-        // TODO
-        input:autofill {
-            color: $lagoon;
-            background-color: $dark;
-            font-weight: 600;
-        }
-        input:-webkit-autofill {
-            color: $lagoon;
-            background-color: $dark;
-            font-weight: 600;
         }
     }
 
@@ -131,6 +120,7 @@ form {
             color: $white;
             opacity: 0.6;
             background: linear-gradient(45deg, transparent 5%, $lagoon 5%);
+            transform: scale(1.1);
         }
     }
 

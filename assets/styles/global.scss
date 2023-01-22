@@ -9,6 +9,14 @@
 // Pages
 // Themes
 
+// 1.Base
+// 2.Utils
+// 3.Layout (mise en page)
+// 4.Composants
+// 5.Pages
+// 6.Themes
+// 7.Vendors (tiers).
+
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
@@ -16,69 +24,10 @@
 
 @import './assets/styles/utils/variables.scss';
 @import './assets/styles/utils/mixins.scss';
+@import './assets/styles/base/base.scss';
+@import './assets/styles/components/button.scss';
 @import './assets/styles/components/form.scss';
 @import './assets/styles/layouts/header.scss';
+@import './assets/styles/pages/home.scss';
 @import './assets/styles/pages/register.scss';
 @import './assets/styles/pages/login.scss';
-
-
-* {
-    font-family: 'Ubuntu', sans-serif;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    background-color: rgb(20, 20, 20);
-}
-
-main {
-    height: 500vh;
-    margin: 100px 50px;
-}
-
-h1, p {
-    color: white
-}
-
-// REACT
-#root {
-    margin-top: 100px;
-}
-
-// SPINNER LOADING
-
-.loader {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: inline-block;
-    border-top: 4px solid #FFF;
-    border-right: 4px solid transparent;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-}
-
-.loader::after {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border-left: 4px solid blueviolet;
-    border-bottom: 4px solid transparent;
-    animation: rotation 0.5s linear infinite reverse;
-}
-
-@keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}

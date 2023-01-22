@@ -27,4 +27,54 @@
             opacity: 0.6;
         }
     }
+    #banner {
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 60px;
+        background-color: $shadow;
+        overflow: hidden;
+        border-top: 1px solid $border;
+        border-bottom: 1px solid $border;
+        .banner_box {
+            position: absolute;
+            left: 0%;
+            top: 0%;
+            right: 0%;
+            bottom: 0%;
+            z-index: 10;
+            background-image: linear-gradient(260deg, #000, transparent 5%), linear-gradient(270deg, transparent 95%, #000), linear-gradient(180deg, transparent, transparent);
+            opacity: 1;
+            display: flex;
+            align-items: center;
+        }
+        .banner_content {
+            display: flex;
+            width: 100%;
+            .icon_box {
+                display: flex;
+                width: 3rem;
+                padding: 0 50px;
+                align-items: center;
+                img {
+                    width: -webkit-fill-available;
+                    opacity: 0.5;
+                    display: flex;
+                    height: fit-content;
+                    max-height: 40px
+                }
+            }
+            white-space: nowrap;
+            animation: marquee-horizontal 40s linear infinite;
+            @keyframes marquee-horizontal {
+                from {
+                    transform: translateX(0);
+                }
+
+                to {
+                    transform: translateX(-50%);
+                }
+            }
+        }
+    }
 }

@@ -1,0 +1,30 @@
+#home {
+    height: 500vh;
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 250px 0;
+        h2 {
+            color: $lagoon;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 0;
+            letter-spacing: 4px;
+            opacity: 0.8;
+        }
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: 5px;
+            text-align: center;
+        }
+        p {
+            margin: 0;
+            width: 700px;
+            text-align: center;
+            opacity: 0.6;
+        }
+    }
+}

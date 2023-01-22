@@ -54,6 +54,7 @@ header {
                     &:hover {
                         color: $white;
                         opacity: 1;
+                        transition: 2s;
                     }
                 }
             }

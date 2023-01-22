@@ -5,7 +5,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        padding: 250px 0;
+        padding: 250px 0 0 0;
         h2 {
             color: $lagoon;
             font-size: 16px;
@@ -26,6 +26,10 @@
             text-align: center;
             opacity: 0.6;
         }
+        img {
+            margin-top: 50px;
+            width: 100%;
+        }
     }
     #banner {
         display: flex;
@@ -36,6 +40,7 @@
         overflow: hidden;
         border-top: 1px solid $border;
         border-bottom: 1px solid $border;
+        top: -5px;
         .banner_box {
             position: absolute;
             left: 0%;

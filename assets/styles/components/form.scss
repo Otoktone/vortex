@@ -64,8 +64,9 @@ form {
         }
         i {
             position: absolute;
-            right: 30px;
-            top: 30px;
+            right: 20px;
+            top: 20px;
+            padding: 10px;
             z-index: 100;
             &:hover {
                 cursor: pointer;
@@ -76,7 +77,7 @@ form {
     .register_terms {
         display: flex;
         align-items: center;
-        padding: 0 0 20px 15px;
+        padding: 0 0 0 15px;
         div {
             padding: 0;
         }
@@ -140,6 +141,7 @@ form {
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
+        margin-top: 20px;
     }
 
     button:after {
@@ -153,7 +155,7 @@ form {
         content: 'MAY THE FORCE BE WITH YOU';
         display: block;
         position: absolute;
-        top: 0;
+        top: -25px;
         left: 0;
         right: 0;
         bottom: 0;

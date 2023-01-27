@@ -20,3 +20,5 @@ import './bootstrap';
 // const root = ReactDOM.createRoot(document.getElementById('root'));  // create a root element
 // root.render(<Home />);  // render the Home component to the root element
 // root.render(<Vortex />)
+
+import './js/front/register.ts';

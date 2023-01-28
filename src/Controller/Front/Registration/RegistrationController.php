@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front\Registration;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -55,7 +55,7 @@ class RegistrationController extends AbstractController
                     ->from(new Address('noreply@vortex.com', 'Vortex'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
+                    ->htmlTemplate('front/registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
 
@@ -67,7 +67,7 @@ class RegistrationController extends AbstractController
             // }
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('front/registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

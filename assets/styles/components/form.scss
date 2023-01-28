@@ -2,7 +2,6 @@
 form {
     @include input-checkbox;
     padding: 70px 40px 40px 40px;
-    width: 320px;
     margin: auto;
     background-color: $shadow;
     border-radius: 5px;
@@ -141,7 +140,7 @@ form {
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
-        margin-top: 20px;
+        margin: 20px 20px 20px;
     }
 
     button:after {
@@ -156,7 +155,7 @@ form {
         display: block;
         position: absolute;
         top: -25px;
-        left: 0;
+        left: -20px;
         right: 0;
         bottom: 0;
         background: linear-gradient(45deg, transparent 3%, $lagoon 3%, $lagoon 5%, $purple 5%);

@@ -1,0 +1,30 @@
+{% extends "front/layout/layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+{% block body %}
+{% include "front/user/header.html.twig" %}
+  <section id="sidebar">
+    <aside class="aside" role="banner">
+      <h1 class="logo">
+        <a href="{{ path('home') }}">Vortex <span>Flux</span></a>
+      </h1>
+      <div class="nav-wrap">
+        <nav class="main-nav" role="navigation">
+          <ul class="unstyled list-hover-slide">
+            <li><a href="#"><i class="fa-solid fa-user"></i> <span>My feed</span></a></li>
+            <li><a href="#"><i class="fa-brands fa-hotjar"></i> <span>Popular</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-bookmark"></i> <span>Bookmarks</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-gear"></i> <span>Customize</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-rss"></i> <span>Blog</span></a></li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+  </section>
+{% endblock %}

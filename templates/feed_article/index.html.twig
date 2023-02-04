@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FeedArticle index{% endblock %}
+
+{% block body %}
+    <h1>FeedArticle index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Link</th>
+                <th>Content</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for feed_article in feed_articles %}
+            <tr>
+                <td>{{ feed_article.id }}</td>
+                <td>{{ feed_article.title }}</td>
+                <td>{{ feed_article.link }}</td>
+                <td>{{ feed_article.content }}</td>
+                <td>{{ feed_article.date }}</td>
+                <td>
+                    <a href="{{ path('app_feed_article_show', {'id': feed_article.id}) }}">show</a>
+                    <a href="{{ path('app_feed_article_edit', {'id': feed_article.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_feed_article_new') }}">Create new</a>
+{% endblock %}

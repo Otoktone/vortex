@@ -2,17 +2,19 @@
 
 namespace App\Controller\Back\Admin;
 
+use App\Entity\Feed;
+use App\Entity\FeedArticle;
 use App\Entity\User;
 use Symfony\UX\Chartjs\Model\Chart;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -85,6 +87,10 @@ class DashboardController extends AbstractDashboardController
 
             MenuItem::section('Utilisateurs'),
             MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class),
+
+            MenuItem::section('Flux'),
+            MenuItem::linkToCrud('Flux', 'fa fa-rss', Feed::class),
+            MenuItem::linkToCrud('Articles', 'fa fa-rss', FeedArticle::class),
         ];
     }
 

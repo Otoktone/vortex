@@ -1,3 +1,6 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+generate_article_route:
+  path: /generate-article
+  controller: App\Controller\Back\Admin\FeedArticleController::generateArticleAction

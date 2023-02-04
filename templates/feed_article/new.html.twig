@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New FeedArticle{% endblock %}
+
+{% block body %}
+    <h1>Create new FeedArticle</h1>
+
+    {{ include('feed_article/_form.html.twig') }}
+
+    <a href="{{ path('app_feed_article_index') }}">back to list</a>
+{% endblock %}

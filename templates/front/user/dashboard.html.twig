@@ -44,10 +44,13 @@
           <div class="feedItem">
             <a href="{{ item.link }}" target="_blank">
               <div class="feedTitle">
-                {{ item.title }}
+                <h3>{{ item.title }}</h3>
+                <p>
+                  {{ item.category }}
+                </p>
               </div>
               <div class="feedImage">
-                <img src="{{ item.media['imageUrl'] ?? (asset('build/images/icons/favicon.png')) }}" alt="{{ item.title }}">
+                <img src="{{ item.media ?? (asset('build/images/icons/favicon.png')) }}" alt="{{ item.title }}">
               </div>
               <div class="feedContent">
                 <p>
@@ -55,23 +58,8 @@
                 </p>
               </div>
               <div class="feedDate">
-                {{ item.pubDate.format('Y-m-d H:i:s') }}
+                {{ item.date }}
               </div>
-              {# {% if item.children('media', true).count() > 0 %}
-                <div class="feedImage">
-                  <img src="{{ item.children('media', true).content.attributes.url }}" alt="{{ item.title }}">
-                </div>
-              {% else %}
-                <div class="feedImage">
-                  <img src="" alt="">
-                </div>
-              {% endif %}
-              <div class="feedDescription">
-                <li>{{ item.description|u.truncate(100, '...') }}</li>
-              </div>
-              <div class="feedDate">
-                <li>{{ item.pubDate }}</li>
-              </div> #}
             </a>
           </div>
         {% endfor %}

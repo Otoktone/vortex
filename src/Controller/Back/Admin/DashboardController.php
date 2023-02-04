@@ -3,6 +3,7 @@
 namespace App\Controller\Back\Admin;
 
 use App\Entity\Feed;
+use App\Entity\FeedArticle;
 use App\Entity\User;
 use Symfony\UX\Chartjs\Model\Chart;
 use Symfony\Component\HttpFoundation\Response;
@@ -89,6 +90,7 @@ class DashboardController extends AbstractDashboardController
 
             MenuItem::section('Flux'),
             MenuItem::linkToCrud('Flux', 'fa fa-rss', Feed::class),
+            MenuItem::linkToCrud('Articles', 'fa fa-rss', FeedArticle::class),
         ];
     }
 

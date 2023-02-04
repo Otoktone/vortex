@@ -4,18 +4,21 @@ namespace App\Controller\Back\Admin;
 
 
 use App\Entity\Feed;
+use App\Entity\FeedArticle;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
 use Symfony\Component\Form\{FormBuilderInterface, FormEvents};
-use EasyCorp\Bundle\EasyAdminBundle\Config\{Crud, KeyValueStore};
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use Symfony\Component\Form\Extension\Core\Type\{PasswordType, RepeatedType};
+use EasyCorp\Bundle\EasyAdminBundle\Config\{Crud, KeyValueStore, Action, Actions};
 use EasyCorp\Bundle\EasyAdminBundle\Field\{ChoiceField, IdField, EmailField, ImageField, TextField};
 
 class FeedCrudController extends AbstractCrudController
 {
+
+    public const ACTION_GENERATE = "generate";
+
     public function __construct()
     {
     }
@@ -71,5 +74,16 @@ class FeedCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('')
             ->setEntityLabelInPlural('Flux');
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        $generate = Action::new(self::ACTION_GENERATE)
+            ->displayAsLink('generate_article_route')
+            ->linkToRoute('generate_article_route')
+            ->setCssClass('btn btn-danger');
+
+        return $actions
+            ->add(Crud::PAGE_INDEX, $generate);
     }
 }

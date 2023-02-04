@@ -8,23 +8,61 @@
 {% endblock %}
 
 {% block body %}
-{% include "front/user/header.html.twig" %}
-  <section id="sidebar">
-    <aside class="aside" role="banner">
-      <h1 class="logo">
-        <a href="{{ path('home') }}">Vortex <span>Flux</span></a>
-      </h1>
-      <div class="nav-wrap">
-        <nav class="main-nav" role="navigation">
-          <ul class="unstyled list-hover-slide">
-            <li><a href="#"><i class="fa-solid fa-user"></i> <span>My feed</span></a></li>
-            <li><a href="#"><i class="fa-brands fa-hotjar"></i> <span>Popular</span></a></li>
-            <li><a href="#"><i class="fa-solid fa-bookmark"></i> <span>Bookmarks</span></a></li>
-            <li><a href="#"><i class="fa-solid fa-gear"></i> <span>Customize</span></a></li>
-            <li><a href="#"><i class="fa-solid fa-rss"></i> <span>Blog</span></a></li>
-          </ul>
-        </nav>
+  {% include "front/user/header.html.twig" %}
+    <section id="sidebar">
+      <aside class="aside" role="banner">
+        <h1 class="logo">
+          <a href="{{ path('home') }}">Vortex <span>Flux</span></a>
+        </h1>
+        <div class="nav-wrap">
+          <nav class="main-nav" role="navigation">
+            <ul class="unstyled list-hover-slide">
+              <li><a href="#"><i class="fa-solid fa-user"></i> <span>My feed</span></a></li>
+              <li><a href="#"><i class="fa-brands fa-hotjar"></i> <span>Popular</span></a></li>
+              <li><a href="#"><i class="fa-solid fa-bookmark"></i> <span>Bookmarks</span></a></li>
+              <li><a href="#"><i class="fa-solid fa-gear"></i> <span>Customize</span></a></li>
+              <li><a href="#"><i class="fa-solid fa-rss"></i> <span>Blog</span></a></li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+    </section>
+    <section id="feed">
+      <div class="feedToggle">
+          {% for feed in feeds %}
+          <div class="feedList">
+            <span>{{ feed.name }}</span>
+            <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+            </label>
+          </div>
+          {% endfor %}
       </div>
-    </aside>
-  </section>
+      <div class="feedContainer">
+        {% for item in items %} {# |slice(1, 2) #}
+          <div class="feedItem">
+            <a href="{{ item.link }}" target="_blank">
+              <div class="feedTitle">
+                <h3>{{ item.title }}</h3>
+                <p>
+                  {{ item.category }}
+                </p>
+              </div>
+              <div class="feedImage">
+                <img src="{{ item.media ?? (asset('build/images/icons/favicon.png')) }}" alt="{{ item.title }}">
+              </div>
+              <div class="feedContent">
+                <p>
+                  {{ item.content|u.truncate(100, '...')|escape }}
+                </p>
+              </div>
+              <div class="feedDate">
+                {{ item.date }}
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
 {% endblock %}

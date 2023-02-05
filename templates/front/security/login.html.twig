@@ -2,6 +2,10 @@
 
 {% block title %}Log in!{% endblock %}
 
+{% block javascripts %}
+    {{ encore_entry_script_tags('login') }}
+{% endblock %}
+
 {% block body %}
     <section id="login">
         <form method="post">
@@ -43,7 +47,4 @@
             </button>
         </form>
     </section>
-{% block javascripts %}
-    {{ encore_entry_script_tags('login') }}
-{% endblock %}
 {% endblock %}

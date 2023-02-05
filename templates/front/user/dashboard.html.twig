@@ -57,8 +57,10 @@
                   {{ item.content|u.truncate(100, '...')|escape }}
                 </p>
               </div>
-              <div class="feedDate">
-                {{ item.date }}
+              <div class="feedDateContainer">
+                <div class="feedDate">
+                  {{ item.date }}
+                </div>
               </div>
             </a>
           </div>

@@ -1,10 +1,7 @@
 {% extends "front/layout/layout.html.twig" %}
 
-{% block stylesheets %}
-    {{ encore_entry_link_tags('app') }}
-{% endblock %}
 {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('dashboard') }}
 {% endblock %}
 
 {% block body %}
@@ -26,7 +23,7 @@
           </nav>
         </div>
         <div class="feedToggle">
-          {% for item in items %}
+          {# {% for item in items %}
           <div class="feedList">
             <span>{{ item.category|capitalize }}</span>
             <label class="switch">
@@ -34,13 +31,14 @@
             <span class="slider round"></span>
             </label>
           </div>
-          {% endfor %}
+          {% endfor %} #}
         </div>
       </aside>
     </section>
     <section id="feed">
-      <div class="feedContainer">
-        {% for item in items %} {# |slice(1, 2) #}
+      {# <div class="feedContainer"> #}
+       {# |slice(1, 2) #}
+        {# {% for item in items %}
           <div class="feedItem">
             <a href="{{ item.link }}" target="_blank">
               <div class="feedTitle">
@@ -64,7 +62,7 @@
               </div>
             </a>
           </div>
-        {% endfor %}
-      </div>
+        {% endfor %} #}
+      {# </div> #}
     </section>
 {% endblock %}

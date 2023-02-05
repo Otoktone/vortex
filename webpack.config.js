@@ -30,6 +30,7 @@ Encore
     // .addEntry('vortex', './assets/js/vortex.js')
     .addEntry('register', './assets/js/register.js')
     .addEntry('login', './assets/js/login.js')
+    .addEntry('dashboard', './assets/js/dashboard.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

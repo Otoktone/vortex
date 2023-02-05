@@ -80,6 +80,13 @@ form {
         div {
             padding: 0;
         }
+        span {
+            margin-left: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.8;
+            color: $purple;
+        }
         a {
             margin-left: 5px;
             text-decoration: underline;

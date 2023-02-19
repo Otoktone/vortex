@@ -1,5 +1,5 @@
 const togglePasswordRegister:HTMLElement = document.querySelector("#togglePassword");
-const passwordRegister:HTMLInputElement = document.querySelector('#registration_form_plainPassword');
+const passwordRegister:HTMLInputElement = document.querySelector("#registration_form_plainPassword");
 
 togglePasswordRegister.addEventListener("click", function () {
     const typeRegister = passwordRegister.getAttribute("type") === "password" ? "text" : "password";

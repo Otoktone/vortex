@@ -2,46 +2,49 @@
 
 {% block title %}Log in!{% endblock %}
 
+{% block javascripts %}
+    {{ encore_entry_script_tags('login') }}
+{% endblock %}
+
 {% block body %}
-<section id="login">
-    <form method="post">
-        <div class="register_logo" >
-            <img src="{{ asset('build/images/logos/register_logo.png') }}" alt="logo vortex login form">
-        </div>
-        {% if error %}
-            <div class="login_error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
-        {% if app.user %}
-            <div class="login_as">
-                Connected as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Deconnexion</a>
+    <section id="login">
+        <form method="post">
+            <div class="register_logo" >
+                <img src="{{ asset('build/images/logos/register_logo.png') }}" alt="logo vortex login form">
             </div>
-        {% endif %}
-        <div>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus placeholder="Email">
-        </div>
-        <div>
-            <input type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Password">
-        </div>
+            {% if error %}
+                <div class="login_error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-        <input type="hidden" name="_csrf_token"
-            value="{{ csrf_token('authenticate') }}"
-        >
+            {% if app.user %}
+                <div class="login_as">
+                    Connected as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Deconnexion</a>
+                </div>
+            {% endif %}
+            <div>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus placeholder="Email">
+            </div>
+            <div class="register_password">
+                <div>
+                    <input type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Password">
+                    <i id="togglePassword" class="fa-solid fa-eye"></i>
+                </div>
+            </div>
 
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
-
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" name="_remember_me"> Remember me
+            <input type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            >
+            <div class="register_terms">
+                <label class="container">
+                    <input class="agreeTerms" name="_remember_me"  type="checkbox" checked="">
+                    <span class="checkmark"></span>
                 </label>
+                <span>Remember me</a>
             </div>
-        #}
 
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-    </form>
-</section>
+            <button class="btn btn-lg btn-primary" type="submit">
+                Sign in
+            </button>
+        </form>
+    </section>
 {% endblock %}

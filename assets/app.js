@@ -9,16 +9,22 @@
 import './styles/global.scss';
 
 // start the Stimulus application
-import './bootstrap';
+// import './bootstrap';
 
 // REACT
 // import React from 'react';
 // import ReactDOM from 'react-dom/client';
-// import Home from './js/components/Home';  // import the Home component
+// import FeedArticles from './js/components/FeedArticle'
+// const feed = ReactDOM.createRoot(document.getElementById('feed'));
+// feed.render(<FeedArticles />);
+// ReactDOM.render(<FeedArticles />, document.getElementById('feed'));
+
+
+// import Home from './js/components/Home';
 // import { Vortex } from 'react-loader-spinner';
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));  // create a root element
-// root.render(<Home />);  // render the Home component to the root element
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(<Home />);
 // root.render(<Vortex />)
 
-import './js/front/register.ts';
+// import './js/front/Register.ts';

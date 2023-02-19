@@ -1,5 +1,9 @@
 {% extends "front/layout/layout.html.twig" %}
 
+{% block javascripts %}
+    {{ encore_entry_script_tags('home') }}
+{% endblock %}
+
 {% block body %}
     {% include "front/layout/header.html.twig" %}
     <section id="home" >
@@ -11,22 +15,11 @@
         <div>
             <img src="{{ asset('build/images/dashboard.png') }}" alt="">
         </div>
+        {# <div class="test"></div> #}
         </main>
         <section id="banner">
             <div class="banner_box"></div>
                 <div class="banner_content">
-                    <div class="icon_box">
-                        <img src="{{ asset('build/images/icons/rss/cnet.png') }}" alt="">
-                    </div>
-                    <div class="icon_box">
-                        <img src="{{ asset('build/images/icons/rss/mashable.png') }}" alt="">
-                    </div>
-                    <div class="icon_box">
-                        <img src="{{ asset('build/images/icons/rss/new_york_times_technology.png') }}" alt="">
-                    </div>
-                    <div class="icon_box">
-                        <img src="{{ asset('build/images/icons/rss/techcrunch.png') }}" alt="">
-                    </div>
                     <div class="icon_box">
                         <img src="{{ asset('build/images/icons/rss/the_verge.png') }}" alt="">
                     </div>
@@ -52,7 +45,7 @@
                         <img src="{{ asset('build/images/icons/rss/zdnet_logo.png') }}" alt="">
                     </div>
                 </div>
-                {# <div class="banner_content">
+                <div class="banner_content">
                     <div class="icon_box">
                         <img src="{{ asset('build/images/icons/rss/cnet.png') }}" alt="">
                     </div>
@@ -77,19 +70,11 @@
                     <div class="icon_box">
                         <img src="{{ asset('build/images/icons/rss/mashable.png') }}" alt="">
                     </div>
-                    <div class="icon_box">
-                        <img src="{{ asset('build/images/icons/rss/new_york_times_technology.png') }}" alt="">
-                    </div>
-                    <div class="icon_box">
-                        <img src="{{ asset('build/images/icons/rss/techcrunch.png') }}" alt="">
-                    </div>
-                    <div class="icon_box">
-                        <img src="{{ asset('build/images/icons/rss/the_verge.png') }}" alt="">
-                    </div>
-                    <div class="icon_box">
-                        <img src="{{ asset('build/images/icons/rss/zdnet_logo.png') }}" alt="">
-                    </div>
-                </div> #}
+                </div>
+        </section>
+        <section id="frame">
+        </section>
+        <section id="slider">
         </section>
         {# <span class="loader"></span> #}
     </section>

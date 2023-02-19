@@ -5,64 +5,67 @@
 {% endblock %}
 
 {% block body %}
-  {% include "front/user/header.html.twig" %}
-    <section id="sidebar">
-      <aside class="aside" role="banner">
-        <h1 class="logo">
-          <a href="{{ path('home') }}">Vortex <span>Flux</span></a>
-        </h1>
-        <div class="nav-wrap">
-          <nav class="main-nav" role="navigation">
-            <ul class="unstyled list-hover-slide">
-              <li><a href="#"><i class="fa-solid fa-user"></i> <span>My feed</span></a></li>
-              <li><a href="#"><i class="fa-brands fa-hotjar"></i> <span>Popular</span></a></li>
-              <li><a href="#"><i class="fa-solid fa-bookmark"></i> <span>Bookmarks</span></a></li>
-              <li><a href="#"><i class="fa-solid fa-gear"></i> <span>Customize</span></a></li>
-              <li><a href="#"><i class="fa-solid fa-rss"></i> <span>Blog</span></a></li>
-            </ul>
-          </nav>
+{% include "front/user/header.html.twig" %}
+  <section id="feed">
+    {# <div class="feedContainer"> #}
+      {# |slice(1, 2) #}
+      {# {% for item in items %}
+        <div class="feedItem">
+          <a href="{{ item.link }}" target="_blank">
+            <div class="feedTitle">
+              <p>
+                {{ item.category }}
+              </p>
+              <h3>{{ item.title }}</h3>
+            </div>
+            <div class="feedImage">
+              <img src="{{ item.media ?? (asset('build/images/icons/favicon.png')) }}" alt="{{ item.title }}">
+            </div>
+            <div class="feedContent">
+              <p>
+                {{ item.content|u.truncate(100, '...')|escape }}
+              </p>
+            </div>
+            <div class="feedDateContainer">
+              <div class="feedDate">
+                {{ item.date }}
+              </div>
+            </div>
+          </a>
         </div>
-        <div class="feedToggle">
-          {# {% for item in items %}
-          <div class="feedList">
-            <span>{{ item.category|capitalize }}</span>
-            <label class="switch">
-            <input type="checkbox" checked>
-            <span class="slider round"></span>
-            </label>
-          </div>
-          {% endfor %} #}
-        </div>
-      </aside>
-    </section>
-    <section id="feed">
-      {# <div class="feedContainer"> #}
-       {# |slice(1, 2) #}
+      {% endfor %} #}
+    {# </div> #}
+  </section>
+  <section id="sidebar">
+    <aside class="aside" role="banner">
+      <h1 class="logo">
+        <a href="{{ path('home') }}">Vortex <span>Flux</span></a>
+      </h1>
+      <div class="nav-wrap">
+        <nav class="main-nav" role="navigation">
+          <ul class="unstyled list-hover-slide">
+            <li><a href="#"><i class="fa-solid fa-user"></i> <span>My feed</span></a></li>
+            <li><a href="#"><i class="fa-brands fa-hotjar"></i> <span>Popular</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-bookmark"></i> <span>Bookmarks</span></a></li>
+            <li id="customize"><a href="#"><i class="fa-solid fa-gear"></i> <span>Customize</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-rss"></i> <span>Blog</span></a></li>
+            {% if is_granted('ROLE_ADMIN')%}
+            <li><a href="{{ path('admin') }}"><i class="fa-solid fa-lock"></i> <span>Admin</span></a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+      <div class="feedToggle">
         {# {% for item in items %}
-          <div class="feedItem">
-            <a href="{{ item.link }}" target="_blank">
-              <div class="feedTitle">
-                <p>
-                  {{ item.category }}
-                </p>
-                <h3>{{ item.title }}</h3>
-              </div>
-              <div class="feedImage">
-                <img src="{{ item.media ?? (asset('build/images/icons/favicon.png')) }}" alt="{{ item.title }}">
-              </div>
-              <div class="feedContent">
-                <p>
-                  {{ item.content|u.truncate(100, '...')|escape }}
-                </p>
-              </div>
-              <div class="feedDateContainer">
-                <div class="feedDate">
-                  {{ item.date }}
-                </div>
-              </div>
-            </a>
-          </div>
+        <div class="feedList">
+          <span>{{ item.category|capitalize }}</span>
+          <label class="switch">
+          <input type="checkbox" checked>
+          <span class="slider round"></span>
+          </label>
+        </div>
         {% endfor %} #}
-      {# </div> #}
-    </section>
+      </div>
+    </aside>
+  </section>
 {% endblock %}

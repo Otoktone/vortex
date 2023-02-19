@@ -2,7 +2,6 @@
   height: 80px;
   background: rgba(40, 40, 40, 0.5);
   border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.1);
-  z-index: 999;
   left: 240px;
   top: 0;
   position: fixed;
@@ -117,7 +116,7 @@
   a {
     display: block;
     padding: 1em 0;
-    color: $grey;
+    color: $lightGrey;
     text-decoration: none;
     transition: .15s linear color;
     padding: 50px;
@@ -234,17 +233,27 @@
         padding: 25px 25px 0;
         color: $white;
         p {
+          display: flex;
+          justify-content: space-between;
           font-size: 12px;
           margin: 0;
           color: $lagoon;
           opacity: 0.6;
           font-weight: 100;
           letter-spacing: 1px;
+          i {
+            cursor: pointer;
+          }
+        }
+        h3 {
+          opacity: 0.9;
         }
       }
       .feedContent {
         padding: 10px 25px;
-        color: white;
+        color: $white;
+        opacity: 0.6;
+        font-size: 12px;
       }
       .feedImage {
         width: 100%;

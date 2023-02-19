@@ -28,6 +28,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     // .addEntry('vortex', './assets/js/vortex.js')
+    .addEntry('home', './assets/js/home.js')
     .addEntry('register', './assets/js/register.js')
     .addEntry('login', './assets/js/login.js')
     .addEntry('dashboard', './assets/js/dashboard.js')

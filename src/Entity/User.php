@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -37,6 +39,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    #[ORM\ManyToMany(targetEntity: Category::class)]
+    private Collection $categories;
+
+    #[ORM\ManyToMany(targetEntity: FeedArticle::class)]
+    private Collection $favoriteArticles;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+        $this->favoriteArticles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +168,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FeedArticle>
+     */
+    public function getFavoriteArticles(): Collection
+    {
+        return $this->favoriteArticles;
+    }
+
+    public function addFavoriteArticle(FeedArticle $favoriteArticle): self
+    {
+        if (!$this->favoriteArticles->contains($favoriteArticle)) {
+            $this->favoriteArticles->add($favoriteArticle);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteArticle(FeedArticle $favoriteArticle): self
+    {
+        $this->favoriteArticles->removeElement($favoriteArticle);
 
         return $this;
     }

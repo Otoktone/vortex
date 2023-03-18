@@ -1,11 +1,6 @@
 version: "3.8"
 
 services:
-  vendor:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.vendor
-    container_name: vendor
   web:
     build:
       context: .
@@ -16,31 +11,41 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./:/var/www/html/:cached
+      - ./:/var/www/html/
+    networks:
+      - app_net
+
   database:
     image: mysql:8.0
     restart: always
     container_name: database
     environment:
-      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD} #password that will be set for the root superuser account
-      MYSQL_DATABASE: ${DATABASE_NAME} #app_db
-      # MYSQL_USER:  #optional
-      # MYSQL_PASSWORD:  #optional
+      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
     ports:
       - 3306:3306
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - app_net
+
   phpmyadmin:
     image: phpmyadmin
     restart: always
+    container_name: phpmyadmin
     links:
       - database
     ports:
-      - 8080:80
+      - 8081:80
     environment:
       PMA_HOST: database
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
+    networks:
+      - app_net
+
+networks:
+  app_net:
 
 volumes:
   db_data:

@@ -18,7 +18,7 @@ if [[ $1 == "start" ]]; then
           "
 elif [[ $1 == "restart" ]]; then
   # Restart docker-compose services
-  docker-compose down
+  docker-compose stop
   docker-compose up -d
 
   # Display URLs
@@ -35,7 +35,7 @@ elif [[ $1 == "restart" ]]; then
           "
 elif [[ $1 == "stop" ]]; then
   # Stop docker-compose services
-  docker-compose down
+  docker-compose stop
 else
   echo "Usage: ./run.sh [start|restart]"
 fi

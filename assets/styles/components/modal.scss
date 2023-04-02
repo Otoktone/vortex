@@ -19,4 +19,13 @@
     width: 750px;
     height: 500px;
     border-radius: 10px;
+    ul {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-height: 380px;
+        overflow: scroll;
+        li {
+            color: $white;
+        }
+    }
 }

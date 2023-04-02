@@ -3,9 +3,12 @@
 namespace App\Controller\Front\User;
 
 use App\Entity\Feed;
+use App\Entity\Category;
 use App\Entity\FeedArticle;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserDashboardController extends AbstractController
@@ -41,5 +44,20 @@ class UserDashboardController extends AbstractController
         shuffle($feedArticles);
 
         return $this->json($feedArticles);
+    }
+
+    #[Route('/api/category/list', name: 'category_list', methods: ['GET'])]
+    public function getCategoryList(Security $security): JsonResponse
+    {
+        // get auth user
+        $user = $security->getUser();
+
+        $categoryRepository = $this->entityManager->getRepository(Category::class);
+        $categories = $categoryRepository->findAll();
+
+        return $this->json([
+            'user' => $user->getId(),
+            'categories' => $categories,
+        ]);
     }
 }

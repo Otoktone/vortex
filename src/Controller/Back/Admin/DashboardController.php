@@ -2,6 +2,7 @@
 
 namespace App\Controller\Back\Admin;
 
+use App\Entity\Category;
 use App\Entity\Feed;
 use App\Entity\FeedArticle;
 use App\Entity\User;
@@ -89,8 +90,9 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class),
 
             MenuItem::section('Flux'),
-            MenuItem::linkToCrud('Flux', 'fa fa-rss', Feed::class),
-            MenuItem::linkToCrud('Articles', 'fa fa-rss', FeedArticle::class),
+            MenuItem::linkToCrud('Flux RSS', 'fa fa-rss', Feed::class),
+            MenuItem::linkToCrud('Articles', 'fa fa-file', FeedArticle::class),
+            MenuItem::linkToCrud('Catégories', 'fa fa-list', Category::class),
         ];
     }
 

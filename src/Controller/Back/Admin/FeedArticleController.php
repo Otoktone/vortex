@@ -2,6 +2,7 @@
 
 namespace App\Controller\Back\Admin;
 
+use App\Entity\Category;
 use App\Entity\Feed;
 use App\Entity\FeedArticle;
 use App\Repository\FeedArticleRepository;
@@ -14,7 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\{Action, Actions, Crud, Filters};
-use EasyCorp\Bundle\EasyAdminBundle\Field\{IdField, TextField};
+use EasyCorp\Bundle\EasyAdminBundle\Field\{IdField, TextareaField, TextField};
 
 #[Route('/feed/article')]
 class FeedArticleController extends AbstractCrudController
@@ -75,6 +76,16 @@ class FeedArticleController extends AbstractCrudController
                     $categories = $item->getCategories();
                     foreach ($categories as $category) {
                         $categoryTerm = $category->getTerm();
+
+                        $existingCategory = $this->entityManager->getRepository(Category::class)->findOneBy(['name' => $categoryTerm]);
+
+                        // create categories if it doesnt exit yet
+                        if (!$existingCategory) {
+                            $newCategory = new Category();
+                            $newCategory->setName($categoryTerm);
+                            $this->entityManager->persist($newCategory);
+                            $this->entityManager->flush();
+                        }
                     }
                     $mediaImage = null;
                     $content = $item->getContent();
@@ -149,7 +160,7 @@ class FeedArticleController extends AbstractCrudController
             IdField::new('id')->hideOnForm()->hideOnIndex(),
             TextField::new('title')->setLabel('Title'),
             TextField::new('link')->setLabel('Link'),
-            TextField::new('content')->setLabel('Content'),
+            TextareaField::new('content')->setLabel('Content'),
             TextField::new('date')->setLabel('Date'),
             TextField::new('category')->setLabel('Category'),
             // TextField::new('media')->setLabel('Media'),

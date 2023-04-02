@@ -25,7 +25,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # RUN composer install --optimize-autoloader // vérifier path to composer.json
 
 # Copy existing application directory permissions
-COPY --chown=www:www . /var/www/html/
+COPY --chown=www-data:www-data . /var/www/html/
 
 COPY docker/apache/apache.conf /etc/apache2/sites-enabled/000-default.conf
 COPY docker/php/php.ini /etc/php/
@@ -37,3 +37,16 @@ WORKDIR /var/www/html
 EXPOSE 80
 
 CMD ["apache2-foreground"]
+
+# Redirect PHP logs to stdout/stderr
+RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
+    ln -sf /dev/stderr /var/log/apache2/error.log
+
+# Configure PHP
+RUN { \
+    echo 'memory_limit = 256M'; \
+    echo 'error_reporting = E_ALL'; \
+    echo 'display_errors = On'; \
+    echo 'log_errors = On'; \
+    echo 'error_log = /dev/stderr'; \
+} > /usr/local/etc/php/conf.d/docker-php.ini

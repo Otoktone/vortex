@@ -18,7 +18,7 @@ if [[ $1 == "start" ]]; then
           "
 elif [[ $1 == "restart" ]]; then
   # Restart docker-compose services
-  docker-compose stop
+  docker-compose down
   docker-compose up -d
 
   # Display URLs

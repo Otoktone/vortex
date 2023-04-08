@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install \
     intl \
     zip \
-    pdo_pgsql \
+    pdo_mysql \
+    mysqli \
     pdo_mysql
 
 # Enable Apache mod_rewrite

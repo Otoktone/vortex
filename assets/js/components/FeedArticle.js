@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 
 // api url (develop)(TODO : change with env varibale)
@@ -13,17 +12,19 @@ class FeedArticles extends React.Component {
   // wait until component is mounted
   async componentDidMount() {
     try {
-      // axios client request
-      const res = await axios.get(apiUrl);
+      // fetch articles
+      const res = await fetch(apiUrl);
+      // extract data from response
+      const data = await res.json();
       // update state with articles
-      this.setState({ articles: res.data });
+      this.setState({ articles: data });
     } catch (error) {
       console.error(error);
     }
   }
 
   render() {
-    // populate state with articles from axios call
+    // populate state with articles from fetch call
     const { articles } = this.state;
 
     return (

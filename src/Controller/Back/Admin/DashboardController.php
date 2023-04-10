@@ -93,6 +93,9 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Flux RSS', 'fa fa-rss', Feed::class),
             MenuItem::linkToCrud('Articles', 'fa fa-file', FeedArticle::class),
             MenuItem::linkToCrud('Catégories', 'fa fa-list', Category::class),
+
+            MenuItem::section('Back to Vortex'),
+            MenuItem::linkToRoute('Home', 'fa fa-home', 'home'),
         ];
     }
 

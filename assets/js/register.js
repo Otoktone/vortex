@@ -1,1 +1,1 @@
-import './front/Register';
+import './front/register.ts';

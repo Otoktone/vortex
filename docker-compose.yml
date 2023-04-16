@@ -46,6 +46,19 @@ services:
     networks:
       - app_net
 
+  node:
+    image: "node:16"
+    user: "node"
+    working_dir: /var/www/html/
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/var/www/html/
+    command: >
+      bash -c "yarn install
+      && yarn dev
+      && yarn watch"
+
 networks:
   app_net:
 

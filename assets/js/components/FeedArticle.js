@@ -42,7 +42,7 @@ class FeedArticles extends React.Component {
                   <img src={article.media || 'build/images/icons/favicon.png'} alt={article.title} />
                 </div>
                 <div className="feedContent">
-                  <p>{article.content.slice(0,100)}...</p>
+                  <p>{article.content.slice(0, 100)}...</p>
                 </div>
                 <div className="feedDateContainer">
                   <div className="feedDate">{article.date}</div>

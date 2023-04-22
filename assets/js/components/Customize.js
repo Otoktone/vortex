@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 
+// api url develop TODO : change with env varibale
 const apiUrl = "http://localhost:80/api";
 
 function MyModal() {
+  // define state variables
   const [showModal, setShowModal] = useState(false);
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -10,13 +12,14 @@ function MyModal() {
   const [success, setSuccess] = useState(false);
   const [user, setUserId] = useState(null);
 
+  // fetch categories from the API and update state using the useEffect hook
   useEffect(() => {
     const fetchCategories = async () => {
       setLoading(true);
       try {
         const response = await fetch(`${apiUrl}/category/list`);
         const data = await response.json();
-        console.log('API response:', data);
+        console.log("API response :", data);
         if (Array.isArray(data.categories)) {
           setCategories(data.categories);
           setUserId(data.user);
@@ -29,18 +32,11 @@ function MyModal() {
     fetchCategories();
   }, []);
 
-  useEffect(() => {
-    if (showModal) {
-      document.body.classList.add("modal-open");
-    } else {
-      document.body.classList.remove("modal-open");
-    }
-  }, [showModal]);
-
   const handleModal = () => {
     setShowModal(!showModal);
   };
 
+  // add or remove a category ID from the selectedCategories array
   const handleCheckboxChange = (event) => {
     const categoryId = parseInt(event.target.value);
     const isChecked = event.target.checked;
@@ -54,6 +50,7 @@ function MyModal() {
     }
   };
 
+  // submit the selected categories to the API when the form is submitted
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -63,15 +60,21 @@ function MyModal() {
         user: user,
       };
       const urlParams = new URLSearchParams({
-          categories: selectedCategories.join(","),
-          user: user,
+        categories: selectedCategories.join(","),
+        user: user,
       });
-      const response = await fetch(`${apiUrl}/user/category/${urlParams.get('categories')}/${urlParams.get('user')}`, {
+      const response = await fetch(
+        `${apiUrl}/user/category/${urlParams.get("categories")}/${urlParams.get(
+          "user"
+        )}`,
+        {
           method: "GET",
           headers: {
-              "Content-Type": "application/json",
+            "Content-Type": "application/json",
           },
-      });
+        }
+      );
+      console.log("Submit response :", response, "Data :", data);
       setLoading(false);
       setSuccess(true);
     } catch (error) {
@@ -79,6 +82,15 @@ function MyModal() {
       setLoading(false);
     }
   };
+
+  // handle scroll on body when modal is open
+  useEffect(() => {
+    if (showModal) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  }, [showModal]);
 
   return (
     <>
@@ -95,28 +107,29 @@ function MyModal() {
                 <p>Loading categories...</p>
               ) : (
                 <ul>
-                  {categories ? (
-                    categories.map((category) => (
-                      <li key={category.id}>
-                        <label className="checkbox-label" htmlFor={`category-${category.id}`}>
-                        <input
-                          className="checkbox-input"
-                          type="checkbox"
-                          id={`category-${category.id}`}
-                          value={category.id}
-                          checked={selectedCategories.includes(category.id)}
-                          onChange={handleCheckboxChange}
-                        />
-                        {category.name}
-                      </label>
-                      </li>
-                    ))
-                  ) : null}
+                  {categories
+                    ? categories.map((category) => (
+                        <li key={category.id}>
+                          <label
+                            className="checkbox-label"
+                            htmlFor={`category-${category.id}`}
+                          >
+                            <input
+                              className="checkbox-input"
+                              type="checkbox"
+                              id={`category-${category.id}`}
+                              value={category.id}
+                              checked={selectedCategories.includes(category.id)}
+                              onChange={handleCheckboxChange}
+                            />
+                            {category.name}
+                          </label>
+                        </li>
+                      ))
+                    : null}
                 </ul>
               )}
-              {success && (
-                <p>Categories saved successfully</p>
-              )}
+              {success && <p>Categories saved successfully</p>}
               <button type="submit">Save</button>
               <button onClick={handleModal}>Close</button>
             </form>

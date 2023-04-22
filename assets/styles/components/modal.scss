@@ -1,3 +1,7 @@
+body.modal-open {
+    overflow: hidden;
+}
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -16,16 +20,37 @@
     background-color: $dark;
     padding: 20px;
     z-index: 1001;
-    width: 750px;
-    height: 500px;
     border-radius: 10px;
+    width: 75vw;
     ul {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        max-height: 380px;
-        overflow: scroll;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-height: 50vh;
+        overflow-y: scroll;
+        border-top: none !important;
+        list-style: none;
+        padding: 0;
         li {
+            border-top: none !important;
+            border-bottom: none !important;
             color: $white;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            .checkbox-label {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                cursor: pointer;
+                .checkbox-input {
+                    margin-right: 10px;
+                    width: 20px;
+                    height: 20px;
+                    &:checked {
+                        outline: none;
+                    }
+                }
+            }
         }
     }
 }

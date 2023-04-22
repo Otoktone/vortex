@@ -29,6 +29,14 @@ function MyModal() {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    if (showModal) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  }, [showModal]);
+
   const handleModal = () => {
     setShowModal(!showModal);
   };
@@ -90,16 +98,17 @@ function MyModal() {
                   {categories ? (
                     categories.map((category) => (
                       <li key={category.id}>
+                        <label className="checkbox-label" htmlFor={`category-${category.id}`}>
                         <input
+                          className="checkbox-input"
                           type="checkbox"
                           id={`category-${category.id}`}
                           value={category.id}
                           checked={selectedCategories.includes(category.id)}
                           onChange={handleCheckboxChange}
                         />
-                        <label htmlFor={`category-${category.id}`}>
-                          {category.name}
-                        </label>
+                        {category.name}
+                      </label>
                       </li>
                     ))
                   ) : null}
@@ -109,8 +118,8 @@ function MyModal() {
                 <p>Categories saved successfully</p>
               )}
               <button type="submit">Save</button>
+              <button onClick={handleModal}>Close</button>
             </form>
-            <button onClick={handleModal}>Close</button>
           </div>
         </div>
       )}

@@ -109,23 +109,23 @@ function MyModal() {
                 <ul>
                   {categories
                     ? categories.map((category) => (
-                        <li key={category.id}>
-                          <label
-                            className="checkbox-label"
-                            htmlFor={`category-${category.id}`}
-                          >
-                            <input
-                              className="checkbox-input"
-                              type="checkbox"
-                              id={`category-${category.id}`}
-                              value={category.id}
-                              checked={selectedCategories.includes(category.id)}
-                              onChange={handleCheckboxChange}
-                            />
-                            {category.name}
-                          </label>
-                        </li>
-                      ))
+                      <li key={category.id}>
+                        <label
+                          className="checkbox-label"
+                          htmlFor={`category-${category.id}`}
+                        >
+                          <input
+                            className="checkbox-input"
+                            type="checkbox"
+                            id={`category-${category.id}`}
+                            value={category.id}
+                            checked={selectedCategories.includes(category.id)}
+                            onChange={handleCheckboxChange}
+                          />
+                          {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
+                        </label>
+                      </li>
+                    ))
                     : null}
                 </ul>
               )}

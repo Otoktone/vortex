@@ -4,10 +4,14 @@ import React from 'react';
 const apiUrl = 'http://localhost:80/api/feed/articles';
 
 class FeedArticles extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { articles: [] };
+  }
   // init state
-  state = {
-    articles: []
-  };
+  // state = {
+  //   articles: []
+  // };
 
   // wait until component is mounted
   async componentDidMount() {
@@ -36,7 +40,7 @@ class FeedArticles extends React.Component {
               <a href={article.link} target="_blank">
                 <div className="feedTitle">
                   <p>{article.category[0].toUpperCase() + article.category.substr(1).toLowerCase()}<i className="fa-solid fa-bookmark"></i></p>
-                  <h3>{article.title[0].toUpperCase() + article.title.substr(1).toLowerCase()}</h3>
+                  <h3>{article.title[0].toUpperCase() + article.title.substr(1).toLowerCase().slice(0, 100)}...</h3>
                 </div>
                 <div className="feedImage">
                   <img src={article.media || 'build/images/icons/favicon.png'} alt={article.title} />

@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     libzip-dev \
     gnupg2 \
-    curl
+    curl \
+    dos2unix
 
 RUN docker-php-ext-install \
     intl \
@@ -27,7 +28,7 @@ COPY docker/apache/apache.conf /etc/apache2/sites-enabled/000-default.conf
 COPY docker/php/php.ini /etc/php/
 COPY docker/entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /entrypoint.sh
+RUN dos2unix /entrypoint.sh && chmod +x /entrypoint.sh
 
 # Match host user id and group id
 RUN usermod -u 1000 www-data

@@ -1,95 +1,166 @@
 #home {
-    height: 500vh;
-    main {
+  height: 100%;
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 250px 0 0 0;
+    overflow: hidden;
+    h2 {
+      color: $lagoon;
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 0;
+      letter-spacing: 4px;
+      opacity: 0.8;
+      font-family: "Goldman", sans-serif;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-family: "Goldman", sans-serif;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 3rem;
+      margin: 0;
+      letter-spacing: 5px;
+      text-align: center;
+    }
+    p {
+      margin: 0;
+      width: 700px;
+      text-align: center;
+      opacity: 0.6;
+    }
+    img {
+      margin-top: 250px;
+      width: 100vw;
+    }
+    // .test {
+    //     width: 50vw;
+    //     height: 50vw;
+    //     background: radial-gradient(46.6% 46.6% at 49.91% 53.4%, $lagoon 0%, rgba(34, 234, 164, 0) 100%);
+    //     filter: blur(5px);
+    //     position: absolute;
+    //     top: 0;
+    //     opacity: 0.4;
+    //     border-radius: 100%;
+    // }
+  }
+  #banner {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background-color: $shadow;
+    overflow: hidden;
+    border-top: 1px solid $border;
+    border-bottom: 1px solid $border;
+    top: -5px;
+    .banner_box {
+      position: absolute;
+      left: 0%;
+      top: 0%;
+      right: 0%;
+      bottom: 0%;
+      z-index: 10;
+      background-image: linear-gradient(260deg, #000, transparent 5%),
+        linear-gradient(270deg, transparent 95%, #000),
+        linear-gradient(180deg, transparent, transparent);
+      opacity: 1;
+      display: flex;
+      align-items: center;
+    }
+    .banner_content {
+      display: flex;
+      width: 100%;
+      .icon_box {
         display: flex;
-        justify-content: center;
+        padding: 0 50px;
         align-items: center;
-        flex-direction: column;
-        padding: 250px 0 0 0;
-        overflow: hidden;
-        h2 {
-            color: $lagoon;
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: 0;
-            letter-spacing: 4px;
-            opacity: 0.8;
-        }
-        h1 {
-            font-size: 3rem;
-            margin: 0;
-            letter-spacing: 5px;
-            text-align: center;
-        }
-        p {
-            margin: 0;
-            width: 700px;
-            text-align: center;
-            opacity: 0.6;
-        }
         img {
-            margin-top: 250px;
-            width: 100vw;
+          width: -webkit-fill-available;
+          opacity: 0.5;
+          display: flex;
+          height: fit-content;
+          max-height: 40px;
         }
-        // .test {
-        //     width: 50vw;
-        //     height: 50vw;
-        //     background: radial-gradient(46.6% 46.6% at 49.91% 53.4%, $lagoon 0%, rgba(34, 234, 164, 0) 100%);
-        //     filter: blur(5px);
-        //     position: absolute;
-        //     top: 0;
-        //     opacity: 0.4;
-        //     border-radius: 100%;
-        // }
-    }
-    #banner {
-        display: flex;
-        position: relative;
-        width: 100%;
-        height: 60px;
-        background-color: $shadow;
-        overflow: hidden;
-        border-top: 1px solid $border;
-        border-bottom: 1px solid $border;
-        top: -5px;
-        .banner_box {
-            position: absolute;
-            left: 0%;
-            top: 0%;
-            right: 0%;
-            bottom: 0%;
-            z-index: 10;
-            background-image: linear-gradient(260deg, #000, transparent 5%), linear-gradient(270deg, transparent 95%, #000), linear-gradient(180deg, transparent, transparent);
-            opacity: 1;
-            display: flex;
-            align-items: center;
+      }
+      white-space: nowrap;
+      animation: marquee-horizontal 40s linear infinite;
+      @keyframes marquee-horizontal {
+        from {
+          transform: translateX(0);
         }
-        .banner_content {
-            display: flex;
-            width: 100%;
-            .icon_box {
-                display: flex;
-                padding: 0 50px;
-                align-items: center;
-                img {
-                    width: -webkit-fill-available;
-                    opacity: 0.5;
-                    display: flex;
-                    height: fit-content;
-                    max-height: 40px
-                }
-            }
-            white-space: nowrap;
-            animation: marquee-horizontal 40s linear infinite;
-            @keyframes marquee-horizontal {
-                from {
-                    transform: translateX(0);
-                }
 
-                to {
-                    transform: translateX(-50%);
-                }
-            }
+        to {
+          transform: translateX(-50%);
         }
+      }
     }
+  }
+  #presentation {
+    div {
+      /* ff 3.6+ */
+      background: -moz-radial-gradient(
+        circle at 50% 50%,
+        $violet 0%,
+        $purple 8%,
+        $perfume 17%,
+        $lagoon 22%,
+        #00000030 38%,
+        #00000000 100%
+      );
+
+      /* safari 5.1+,chrome 10+ */
+      background: -webkit-radial-gradient(
+        circle at 50% 50%,
+        $violet 0%,
+        $purple 8%,
+        $perfume 17%,
+        $lagoon 22%,
+        #00000030 38%,
+        #00000000 100%
+      );
+
+      /* opera 11.10+ */
+      background: -o-radial-gradient(
+        circle at 50% 50%,
+        $violet 0%,
+        $purple 8%,
+        $perfume 17%,
+        $lagoon 22%,
+        #00000030 38%,
+        #00000000 100%
+      );
+
+      /* ie 10+ */
+      background: -ms-radial-gradient(
+        circle at 50% 50%,
+        $violet 0%,
+        $purple 8%,
+        $perfume 17%,
+        $lagoon 22%,
+        #00000030 38%,
+        #00000000 100%
+      );
+
+      /* global 92%+ browsers support */
+      background: radial-gradient(
+        circle at 50% 50%,
+        $violet 0%,
+        $purple 8%,
+        $perfume 17%,
+        $lagoon 22%,
+        #00000030 38%,
+        #00000000 100%
+      );
+      height: 75vh;
+      display: flex;
+      justify-content: center;
+      img {
+        opacity: 0.5;
+      }
+    }
+  }
 }

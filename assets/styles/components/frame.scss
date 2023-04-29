@@ -1,5 +1,8 @@
 #frame {
-  padding: 20px 100px 125px 100px;
+  padding: 125px 100px;
+  background-image: url("../../images/grid_perspective.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
   .frame_container {
     display: flex;
     .frame_box {

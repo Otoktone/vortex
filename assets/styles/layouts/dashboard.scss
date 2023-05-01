@@ -11,11 +11,13 @@
 #sidebar,
 :before,
 :after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 // REUSABLE STYLES
 .unstyled {
-  list-style: none; padding: 0; margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
   a {
     text-decoration: none;
   }
@@ -68,8 +70,8 @@
         right: 0;
         bottom: 0;
         background-color: $shadow;
-        -webkit-transition: .4s;
-        transition: .4s;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
       }
 
       .slider:before {
@@ -80,19 +82,19 @@
         left: 4px;
         bottom: 4px;
         background-color: $dark;
-        -webkit-transition: .4s;
-        transition: .4s;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
       }
 
-      input:checked+.slider {
+      input:checked + .slider {
         background-color: $shadow;
       }
 
-      input:focus+.slider {
+      input:focus + .slider {
         box-shadow: 0 0 1px $dark;
       }
 
-      input:checked+.slider:before {
+      input:checked + .slider:before {
         -webkit-transform: translateX(26px);
         -ms-transform: translateX(26px);
         transform: translateX(26px);
@@ -118,7 +120,7 @@
     padding: 1em 0;
     color: $lightGrey;
     text-decoration: none;
-    transition: .15s linear color;
+    transition: 0.15s linear color;
     padding: 50px;
     &:hover {
       color: $white;
@@ -129,33 +131,53 @@
   }
   span {
     font-weight: 700;
-    transition: .15s linear color;
+    transition: 0.15s linear color;
   }
 }
 
 // MAIN NAV
-.main-nav {
-  ul {
-    border-top: solid 1px $border;
-    li {
-      border-bottom: solid 1px $border;
-      a {
-        padding: 1.1em 0;
-        color: $grey;
-        text-align: center;
-        display: flex;
-        &:hover {
-          color: $white;
+.nav-wrap {
+  .main-nav {
+    ul {
+      border-top: solid 1px $border;
+      li {
+        border-bottom: solid 1px $border;
+        a {
+          padding: 1.1em 0;
+          color: $grey;
+          text-align: center;
+          display: flex;
+          &:hover {
+            color: $white;
+          }
+          i {
+            position: absolute;
+            left: 0;
+            padding: 0 10px;
+          }
+          span {
+            position: relative;
+            left: 35px;
+          }
         }
-        i {
-          position: absolute;
-          left: 0;
-          padding: 0 10px;
-        }
-        span {
-          position: relative;
-          left: 35px;
-        }
+      }
+    }
+  }
+  .logout {
+    display: block;
+    padding: 1em 0;
+    color: $lightGrey;
+    text-decoration: none;
+    transition: 0.15s linear color;
+    padding: 50px;
+    text-align: center;
+    i {
+      margin-right: 10px;
+    }
+    &:hover {
+      color: $white;
+      i {
+        color: $lagoon;
       }
     }
   }
@@ -170,9 +192,9 @@
       display: block;
       position: relative;
       z-index: 1;
-      transition: .35s ease color;
+      transition: 0.35s ease color;
       &:before {
-        content: '';
+        content: "";
         display: block;
         z-index: -1;
         position: absolute;

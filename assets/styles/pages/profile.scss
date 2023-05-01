@@ -1,0 +1,64 @@
+#profile {
+  padding: 25px;
+  .profile_container {
+    background-color: $shadow;
+    padding-bottom: 50px;
+    .profile_account {
+      display: flex;
+      flex-direction: column;
+      .profile_background {
+        background-image: url("../../images/flux.jpg"); // <a href="https://www.freepik.com/free-vector/rainbow-flow-abstract-design-background_7763935.htm#page=5&query=flux&position=15&from_view=search&track=robertav1_2_sidr">Image by kjpargeter</a> on Freepik
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 35vh;
+        border: 1px solid $border;
+      }
+      .profile_info {
+        display: flex;
+        margin: 2%;
+        margin-bottom: 0;
+        padding: 2%;
+        // background-color: $white;
+        .profile_image {
+          border: 2px $white solid;
+          border-radius: 50%;
+          overflow: hidden;
+          width: 150px;
+          height: 150px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: $white;
+          img {
+            width: 10rem;
+          }
+        }
+        .profile_name {
+          display: flex;
+          align-items: end;
+          h4 {
+            font-family: "Goldman", sans-serif;
+            font-size: 2rem;
+            text-transform: uppercase;
+            color: $white;
+            margin: 0;
+          }
+        }
+      }
+      hr {
+        border: 1px solid $white;
+        width: 75vw;
+      }
+      .profile_credits {
+        margin: 0 2% 2% 2%;
+        padding: 2%;
+        color: $white;
+      }
+      .profile_buttons {
+        display: flex;
+      }
+    }
+  }
+}

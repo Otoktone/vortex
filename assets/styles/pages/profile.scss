@@ -1,5 +1,9 @@
 #profile {
   padding: 25px;
+  display: flex;
+    margin-top: 80px;
+    margin-left: 240px;
+    justify-content: center;
   .profile_container {
     background-color: $shadow;
     padding-bottom: 50px;

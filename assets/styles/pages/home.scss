@@ -1,5 +1,10 @@
 #home {
   height: 100%;
+  position: relative;
+  z-index: 2;
+  background-color: $black;
+  margin-bottom: 500px;
+
   main {
     display: flex;
     justify-content: center;
@@ -7,6 +12,7 @@
     flex-direction: column;
     padding: 250px 0 0 0;
     overflow: hidden;
+
     h2 {
       color: $lagoon;
       font-size: 16px;
@@ -17,6 +23,7 @@
       font-family: "Goldman", sans-serif;
       text-transform: uppercase;
     }
+
     h1 {
       font-family: "Goldman", sans-serif;
       text-transform: uppercase;
@@ -26,17 +33,20 @@
       letter-spacing: 5px;
       text-align: center;
     }
+
     p {
       margin: 0;
       width: 700px;
       text-align: center;
       opacity: 0.6;
     }
+
     img {
       margin-top: 250px;
       width: 100vw;
     }
   }
+
   #banner {
     display: flex;
     position: relative;
@@ -47,6 +57,7 @@
     border-top: 1px solid $border;
     border-bottom: 1px solid $border;
     top: -5px;
+
     .banner_box {
       position: absolute;
       left: 0%;
@@ -61,13 +72,16 @@
       display: flex;
       align-items: center;
     }
+
     .banner_content {
       display: flex;
       width: 100%;
+
       .icon_box {
         display: flex;
         padding: 0 50px;
         align-items: center;
+
         img {
           width: -webkit-fill-available;
           opacity: 0.5;
@@ -76,8 +90,10 @@
           max-height: 40px;
         }
       }
+
       white-space: nowrap;
       animation: marquee-horizontal 40s linear infinite;
+
       @keyframes marquee-horizontal {
         from {
           transform: translateX(0);
@@ -89,66 +105,58 @@
       }
     }
   }
+
   #presentation {
     div {
       height: 75vh;
       display: flex;
       justify-content: center;
+
       img {
         /* ff 3.6+ */
-        background: -moz-radial-gradient(
-          circle at 50% 50%,
-          $violet 0%,
-          $purple 8%,
-          $perfume 17%,
-          $lagoon 22%,
-          #00000030 38%,
-          #00000000 100%
-        );
+        background: -moz-radial-gradient(circle at 50% 50%,
+            $violet 0%,
+            $purple 8%,
+            $perfume 17%,
+            $lagoon 22%,
+            #00000030 38%,
+            #00000000 100%);
 
         /* safari 5.1+,chrome 10+ */
-        background: -webkit-radial-gradient(
-          circle at 50% 50%,
-          $violet 0%,
-          $purple 8%,
-          $perfume 17%,
-          $lagoon 22%,
-          #00000030 38%,
-          #00000000 100%
-        );
+        background: -webkit-radial-gradient(circle at 50% 50%,
+            $violet 0%,
+            $purple 8%,
+            $perfume 17%,
+            $lagoon 22%,
+            #00000030 38%,
+            #00000000 100%);
 
         /* opera 11.10+ */
-        background: -o-radial-gradient(
-          circle at 50% 50%,
-          $violet 0%,
-          $purple 8%,
-          $perfume 17%,
-          $lagoon 22%,
-          #00000030 38%,
-          #00000000 100%
-        );
+        background: -o-radial-gradient(circle at 50% 50%,
+            $violet 0%,
+            $purple 8%,
+            $perfume 17%,
+            $lagoon 22%,
+            #00000030 38%,
+            #00000000 100%);
 
         /* ie 10+ */
-        background: -ms-radial-gradient(
-          circle at 50% 50%,
-          $violet 0%,
-          $purple 8%,
-          $perfume 17%,
-          $lagoon 22%,
-          #00000030 38%,
-          #00000000 100%
-        );
+        background: -ms-radial-gradient(circle at 50% 50%,
+            $violet 0%,
+            $purple 8%,
+            $perfume 17%,
+            $lagoon 22%,
+            #00000030 38%,
+            #00000000 100%);
 
         /* global 92%+ browsers support */
-        background: radial-gradient(
-          circle at 50% 50%,
-          $violet 0%,
-          $purple 8%,
-          $perfume 17%,
-          $lagoon 22%,
-          #00000030 38%,
-          #00000000 100%
-        );
+        background: radial-gradient(circle at 50% 50%,
+            $violet 0%,
+            $purple 8%,
+            $perfume 17%,
+            $lagoon 22%,
+            #00000030 38%,
+            #00000000 100%);
       }
     }
   }

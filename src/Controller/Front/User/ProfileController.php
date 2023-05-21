@@ -22,54 +22,6 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/edit', name: 'edit')]
-    // public function changePassword(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
-    // {
-    //     $user = $this->getUser();
-    //     $form = $this->createForm(ChangePasswordFormType::class, $user);
-    //     $form->handleRequest($request);
-    //     $password = $user->getPassword();
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         // $oldPassword = $userPasswordHasher->hashPassword(
-    //         //     $user,
-    //         //     $form->get('currentPassword')->getData()
-    //         // );
-    //         $isValidPassword = $userPasswordHasher->isPasswordValid(
-    //             $user,
-    //             $form->get('currentPassword')->getData()
-    //         );
-    //         if (!$isValidPassword) {
-    //             $this->addFlash('error', 'Invalid password');
-
-    //             return $this->redirectToRoute('edit');
-    //         }
-    //         // if ($oldPassword != $password) {
-    //         //     $this->addFlash('errorPassword', 'Invalid password.');
-    //         // }
-
-    //         $user->setPassword(
-    //             $userPasswordHasher->hashPassword(
-    //                 $user,
-    //                 $form->get('newPassword')->getData()
-    //             )
-    //         );
-
-    //         $entityManager->persist($user);
-    //         $entityManager->flush();
-
-    //         $this->addFlash('successPassword', 'Your password has been modify.');
-
-    //         return $userAuthenticator->authenticateUser(
-    //             $user,
-    //             $authenticator,
-    //             $request
-    //         );
-    //     }
-
-    //     return $this->render('front/user/edit.html.twig', [
-    //         'changePasswordForm' => $form->createView(),
-    //     ]);
-    // }
     public function changePassword(Request $request, UserPasswordHasherInterface $passwordHasher, UserAuthenticatorInterface $authenticator, AppAuthenticator $appAuthenticator): Response
     {
         $user = $this->getUser();
@@ -105,7 +57,7 @@ class ProfileController extends AbstractController
             }
         }
 
-        return $this->render('front/user/edit.html.twig', [
+        return $this->render('front/user/password.html.twig', [
             'changePasswordForm' => $form->createView(),
         ]);
     }

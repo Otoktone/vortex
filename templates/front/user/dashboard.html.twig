@@ -36,38 +36,5 @@
       {% endfor %} #}
     {# </div> #}
   </section>
-  <section id="sidebar">
-    <aside class="aside" role="banner">
-      <h1 class="logo">
-        <a href="{{ path('home') }}">Vortex <span>Flux</span></a>
-      </h1>
-      <div class="nav-wrap">
-        <nav class="main-nav" role="navigation">
-          <ul class="unstyled list-hover-slide">
-            <li><a href="#"><i class="fa-solid fa-rss"></i> <span>My feed</span></a></li>
-            <li><a href="#"><i class="fa-brands fa-hotjar"></i> <span>Popular</span></a></li>
-            <li><a href="#"><i class="fa-solid fa-bookmark"></i> <span>Bookmarks</span></a></li>
-            <li id="customize"><a href="#"><i class="fa-solid fa-gear"></i> <span>Customize</span></a></li>
-            <li><a href="#"><i class="fa-solid fa-blog"></i> <span>Blog</span></a></li>
-            <li><a href="{{ path('profile') }}"><i class="fa-solid fa-user"></i> <span>My profile</span></a></li>
-            {% if is_granted('ROLE_ADMIN')%}
-            <li><a href="{{ path('admin') }}"><i class="fa-solid fa-lock"></i> <span>Admin</span></a></li>
-            {% endif %}
-          </ul>
-        </nav>
-        <a href="{{ path('app_logout') }}" class="logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
-      </div>
-      <div class="feedToggle">
-        {# {% for item in items %}
-        <div class="feedList">
-          <span>{{ item.category|capitalize }}</span>
-          <label class="switch">
-          <input type="checkbox" checked>
-          <span class="slider round"></span>
-          </label>
-        </div>
-        {% endfor %} #}
-      </div>
-    </aside>
-  </section>
+  {% include "front/layout/sidebar.html.twig" %}
 {% endblock %}

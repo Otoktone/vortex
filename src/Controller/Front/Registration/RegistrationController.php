@@ -15,8 +15,10 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -28,44 +30,59 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, VerifyEmailHelperInterface $verifyEmailHelperInterface, EntityManagerInterface $entityManager): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('dashboard');
+        }
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // if ($form['agreeTerms']->getData() === true) {
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
+
+                // encode the plain password
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
+
+                $user->setRoles(['ROLE_USER']);
+
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                $signatureComponents = $verifyEmailHelperInterface->generateSignature(
+                    'app_verify_email',
+                    $user->getId(),
+                    $user->getEmail(),
+                    ['id' => $user->getId()]
+                );
+
+                $this->addFlash('success', 'Confirm your email at: ' . $signatureComponents->getSignedUrl());
+
+                // generate a signed url and email it to the user
+                $this->emailVerifier->sendEmailConfirmation(
+                    'app_verify_email',
                     $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+                    (new TemplatedEmail())
+                        ->from(new Address('noreply@vortex.com', 'Vortex'))
+                        ->to($user->getEmail())
+                        ->subject('Please Confirm your Email')
+                        ->htmlTemplate('front/registration/confirmation_email.html.twig')
+                );
+                // do anything else you need here, like send an email
 
-            $user->setRoles(['ROLE_USER']);
-
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation(
-                'app_verify_email',
-                $user,
-                (new TemplatedEmail())
-                    ->from(new Address('noreply@vortex.com', 'Vortex'))
-                    ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
-                    ->htmlTemplate('front/registration/confirmation_email.html.twig')
-            );
-            // do anything else you need here, like send an email
-
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+                // return $userAuthenticator->authenticateUser(
+                //     $user,
+                //     $authenticator,
+                //     $request
+                // );
+                return $this->redirectToRoute('app_verify_email');
             // }
         }
 

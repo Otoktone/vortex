@@ -1,6 +1,7 @@
 swiftmailer:
-  transport: "%env(MAILER_TRANSPORT)%"
-  host: "%env(MAILER_HOST)%"
-  username: "%env(MAILER_USER)%"
-  password: "%env(MAILER_PASSWORD)%"
+  url: 'smtp://mailcatcher:1025'
+  # transport: "%env(MAILER_TRANSPORT)%"
+  # host: "%env(MAILER_HOST)%"
+  # username: "%env(MAILER_USER)%"
+  # password: "%env(MAILER_PASSWORD)%"
   spool: { type: memory }

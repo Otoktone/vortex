@@ -12,11 +12,6 @@ class FeedArticles extends React.Component {
       showModal: false
     };
   }
-  // init state
-  // state = {
-  //   articles: []
-  // };
-
   // wait until component is mounted
   async componentDidMount() {
     try {
@@ -37,6 +32,29 @@ class FeedArticles extends React.Component {
 
   closeModal = () => {
     this.setState({ selectedArticle: null, showModal: false });
+  }
+
+  addBookmark = async (articleId) => {
+    const { userId } = this.props;
+    console.log("User ID : ", userId);
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, articleId }),
+      });
+
+      if (response.ok) {
+        console.log('Article added to bookmarks');
+        console.log(response);
+      } else {
+        console.error('Failed to add article to bookmarks');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   render() {
@@ -83,7 +101,7 @@ class FeedArticles extends React.Component {
               </div>
               <div className="modalLink">
                 <a className="home_button" href={selectedArticle.link} target="_blank"><i className="fa-solid fa-external-link"></i> Open article</a>
-                <span className="home_button"><i className="fa-solid fa-bookmark"></i> Add to bookmars</span>
+                <span className="home_button" onClick={() => this.addBookmark(selectedArticle.id)}><i className="fa-solid fa-bookmark"></i> Add to bookmarks</span>
               </div>
               <span className="close" onClick={this.closeModal}>&times;</span>
             </div>

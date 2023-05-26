@@ -1,0 +1,59 @@
+// BOOKMARK ARTICLES
+#bookmark {
+    margin-top: 80px !important;
+    margin-left: 240px !important;
+    overflow: hidden;
+
+    .bookmarkContainer {
+        padding: 50px;
+    }
+
+    .bookmarkItem {
+        margin-top: 50px;
+        border: 1px solid $border;
+        padding: 40px 25px;
+        background-color: $shadow;
+        border-radius: 5px;
+        display: flex;
+
+        .bookmarkImage {
+            img {
+                width: 8rem;
+            }
+        }
+
+        .bookmarkText {
+            padding: 0 25px;
+
+            small {
+                color: $lightGrey;
+                font-size: 10px;
+                opacity: 0.35;
+            }
+
+            h3 {
+                color: $white;
+            }
+
+            p {
+                color: $lightGrey;
+                text-align: justify;
+            }
+        }
+
+        .bookmarkFooter {
+            display: flex;
+            align-items: center;
+
+            a {
+                text-decoration: none;
+                color: $lightGrey;
+                width: 80px;
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}

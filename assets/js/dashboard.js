@@ -1,12 +1,24 @@
 // REACT
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React, { useState } from 'react';
+import { createRoot } from 'react-dom/client';
 
 import FeedArticles from './components/FeedArticle';
-const feed = ReactDOM.createRoot(document.getElementById('feed'));
-feed.render(<FeedArticles />);
-// ReactDOM.render(<FeedArticles />, document.getElementById('feed'));
-
 import Customize from './components/Customize';
-const customize = ReactDOM.createRoot(document.getElementById('customize'));
-customize.render(<Customize />);
+
+const Dashboard = () => {
+    const [userId, setUserId] = useState(null);
+
+    const handleUserIdChange = (newUserId) => {
+        setUserId(newUserId);
+    };
+    // console.log(userId);
+    return (
+        <div>
+            <Customize userId={userId} onUserIdChange={handleUserIdChange} />
+            <FeedArticles userId={userId} />
+        </div>
+    );
+};
+
+const rootElement = document.getElementById('feed');
+createRoot(rootElement).render(<Dashboard />);

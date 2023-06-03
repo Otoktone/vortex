@@ -102,10 +102,22 @@ class DashboardController extends AbstractDashboardController
     public function configureUserMenu(UserInterface $user): UserMenu
     {
         $userAvatar = $user->getImageFile();
-        $imagePath = 'build/images/users/' . $userAvatar;
-        return parent::configureUserMenu($user)->setAvatarUrl($imagePath)->setName($user->getUsername())->addMenuItems([
-            MenuItem::linkToRoute('Mon Profil', 'fa fa-id-card', '...', ['...' => '...']),
-            MenuItem::linkToRoute('Paramètres', 'fa fa-user-cog', '...', ['...' => '...']),
-        ]);;
+
+        // check if user got profile image
+        // if ($userAvatar) {
+        //     $imagePath = 'build/images/users/' . $userAvatar;
+        // } else {
+        //     // if not we define default image
+        //     $imagePath = 'build/images/default-user-image.png';
+        // }
+
+        return parent::configureUserMenu($user)
+        // ->setAvatarUrl($imagePath)
+        ->setName($user->getUsername())
+        // ->addMenuItems([
+        //     MenuItem::linkToRoute('Mon Profil', 'fa fa-id-card', '...', ['...' => '...']),
+        //     MenuItem::linkToRoute('Paramètres', 'fa fa-user-cog', '...', ['...' => '...']),
+        // ])
+        ;
     }
 }

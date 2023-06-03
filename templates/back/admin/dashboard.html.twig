@@ -1,5 +1,15 @@
-{# <h1>DASHBOARD</h1> #}
-
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
-{# {% block body %}{{ render_chart(chart) }}{% endblock %} #}
+{% block main %}
+
+    {% block content_title %}Tableau de bord{% endblock %}
+
+        <div>
+            <h2>Statistiques</h2>
+            <p>Nombre d'utilisateurs : {{ userCount }}</p>
+            <p>Nombre d'articles : {{ articleCount }}</p>
+        </div>
+
+{% endblock %}
+
+{# {% block main %}{{ render_chart(chart) }}{% endblock %} #}

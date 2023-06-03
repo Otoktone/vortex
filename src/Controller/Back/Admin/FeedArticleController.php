@@ -177,9 +177,9 @@ class FeedArticleController extends AbstractCrudController
             ->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 
-    public function configureFilters(Filters $filters): Filters
-    {
-        return $filters
-            ->add(EntityFilter::new('FeedArticle')); // TODO
-    }
+    // public function configureFilters(Filters $filters): Filters
+    // {
+    //     return $filters
+    //         ->add(EntityFilter::new('FeedArticle'));
+    // }
 }

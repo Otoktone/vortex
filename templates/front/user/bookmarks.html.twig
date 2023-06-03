@@ -1,0 +1,27 @@
+{% extends "front/layout/layout.html.twig" %}
+
+{% block body %}
+  {% include "front/user/header.html.twig" %}
+  {% include "front/layout/sidebar.html.twig" %}
+  <section id="bookmark">
+    <div>
+      <div class="bookmarkContainer">
+        {% for bookmark in favoriteArticles %}
+          <div class="bookmarkItem">
+            <div class="bookmarkImage">
+              <img src="{{ bookmark.media }}" alt="">
+            </div>
+            <div class="bookmarkText">
+              <small>{{ bookmark.date|date('d/m/Y') }}</small>
+              <h3>{{ bookmark.title }}</h3>
+              <p>{{ bookmark.content }}</p>
+            </div>
+            <div class="bookmarkFooter">
+              <a href="{{ bookmark.link }}" target="_blank"><i class="fa-solid fa-external-link"></i></a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

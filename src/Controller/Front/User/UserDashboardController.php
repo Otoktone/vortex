@@ -2,11 +2,13 @@
 
 namespace App\Controller\Front\User;
 
+use App\Entity\User;
 use App\Entity\Feed;
 use App\Entity\Category;
 use App\Entity\FeedArticle;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +25,8 @@ class UserDashboardController extends AbstractController
     #[Route('/dashboard', name: 'dashboard')]
     public function index()
     {
+        $user = $this->getUser();
+        $userId = $user->getId();
         $feedRepository = $this->entityManager->getRepository(Feed::class);
         $feeds = $feedRepository->findAll();
         // $feedArticleRepository = $this->entityManager->getRepository(FeedArticle::class);
@@ -32,6 +36,7 @@ class UserDashboardController extends AbstractController
 
         return $this->render('front/user/dashboard.html.twig', [
             'feeds' => $feeds,
+            'userId' => $userId,
             // 'items' => $feedArticles,
         ]);
     }
@@ -44,6 +49,33 @@ class UserDashboardController extends AbstractController
         shuffle($feedArticles);
 
         return $this->json($feedArticles);
+    }
+
+    #[Route('/api/feed/articles', name: 'feed_bookmark', methods: ['POST'])]
+    public function addBookmark(Request $request): JsonResponse
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $data = json_decode($request->getContent(), true);
+        $userId = $data['userId'];
+        $articleId = $data['articleId'];
+
+        $user = $entityManager->getRepository(User::class)->find($userId);
+
+        if (!$user) {
+            return new JsonResponse(['message' => 'User not found'], JsonResponse::HTTP_NOT_FOUND);
+        }
+
+        $article = $entityManager->getRepository(FeedArticle::class)->find($articleId);
+
+        if (!$article) {
+            return new JsonResponse(['message' => 'Article not found'], JsonResponse::HTTP_NOT_FOUND);
+        }
+
+        $user->addFavoriteArticle($article);
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'Article added to bookmarks']);
     }
 
     #[Route('/api/category/list', name: 'category_list', methods: ['GET'])]

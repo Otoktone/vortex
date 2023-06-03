@@ -54,4 +54,19 @@ class UserCategoryController extends AbstractController
 
         return new JsonResponse(['success' => true, 'user' => $user->getId(), 'categories' => $categories, 'message' => 'Categories updated successfully']);
     }
+
+    #[Route('/api/user/categories', name: 'api_user_categories', methods: ['GET'])]
+    public function getUserCategories()
+    {
+        $user = $this->getUser();
+
+        $categories = $user->getCategories();
+
+        $categoryIds = [];
+        foreach ($categories as $category) {
+            $categoryIds[] = $category->getId();
+        }
+
+        return $this->json(['categories' => $categoryIds, 'user' => $user->getId()]);
+    }
 }

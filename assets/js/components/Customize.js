@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 // api url develop TODO : change with env varibale
 const apiUrl = "http://localhost:80/api";
 
-function MyModal() {
+const Customize = ({ userId, onUserIdChange }) => {
   // define state variables
   const [showModal, setShowModal] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -19,10 +19,11 @@ function MyModal() {
       try {
         const response = await fetch(`${apiUrl}/category/list`);
         const data = await response.json();
-        console.log("API response :", data);
+        // console.log("API response :", data);
         if (Array.isArray(data.categories)) {
           setCategories(data.categories);
           setUserId(data.user);
+          onUserIdChange(data.user);
         }
         setLoading(false);
       } catch (error) {
@@ -30,7 +31,7 @@ function MyModal() {
       }
     };
     fetchCategories();
-  }, []);
+  }, [onUserIdChange]);
 
   const handleModal = () => {
     setShowModal(!showModal);
@@ -94,7 +95,7 @@ function MyModal() {
 
   return (
     <>
-      <a href="#" onClick={handleModal}>
+      <a className="home_button" href="#" onClick={handleModal}>
         <i className="fa-solid fa-gear"></i>
         <span>Customize</span>
       </a>
@@ -140,4 +141,4 @@ function MyModal() {
   );
 }
 
-export default MyModal;
+export default Customize;

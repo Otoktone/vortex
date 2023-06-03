@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-composer install -n
-
 echo " _          _       _            _         _            _     _      _      "
 echo "/\ \    _ / /\     /\ \         /\ \      /\ \         /\ \ /_/\    /\ \    "
 echo "\ \ \  /_/ / /    /  \ \       /  \ \     \_\ \       /  \ \\ \ \   \ \_\   "
@@ -16,5 +14,7 @@ echo "      \_\/ \/_________/ \/_/    \_\/\_\/       \/__________/ \/_/     \_\/
 
 # bin/console doc:mig:mig --no-interaction
 # bin/console doc:fix:load --no-interaction
+
+composer install -n
 
 exec "$@"

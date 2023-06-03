@@ -133,7 +133,7 @@ class FeedArticleController extends AbstractCrudController
                 $newFilteredItem->setContent($filteredItem['content']);
                 $newFilteredItem->setLink($filteredItem['link']);
                 $newFilteredItem->setDate($filteredItem['date']->format('Y-m-d H:i:s'));
-                $newFilteredItem->setMedia($filteredItem['media']['imageUrl']);
+                // $newFilteredItem->setMedia($filteredItem['media']['imageUrl']);
                 $newFilteredItem->setCategory($filteredItem['category']);
                 $this->entityManager->persist($newFilteredItem);
             }

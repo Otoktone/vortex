@@ -32,6 +32,13 @@ class FeedArticle
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $media = null;
 
+    #[ManyToMany(targetEntity: User::class, mappedBy: 'favoriteArticles')]
+    private Collection $users;
+
+    public function __construct() {
+        $this->users = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +112,30 @@ class FeedArticle
     public function setMedia(?string $media): self
     {
         $this->media = $media;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteArticle(User $user): self
+    {
+        $this->users->removeElement($user);
 
         return $this;
     }

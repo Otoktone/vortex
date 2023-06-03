@@ -41,12 +41,6 @@ class CreateAdminCommand extends Command
         ;
     }
 
-    // the command description shown when running "php bin/console list"
-    protected static $defaultDescription = 'Creates a new user admin';
-
-    // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:create-user';
-
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         // outputs multiple lines to the console (adding "\n" at the end of each line)
@@ -76,10 +70,5 @@ class CreateAdminCommand extends Command
         $this->entityManager->flush();
 
         return Command::SUCCESS;
-    }
-
-    protected function someMethod(): bool
-    {
-        return true;
     }
 }

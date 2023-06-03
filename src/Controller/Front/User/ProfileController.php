@@ -15,11 +15,11 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class ProfileController extends AbstractController
 {
-    #[Route("/profile", name: "profile")]
-    public function index()
-    {
-        return $this->render('front/user/profile.html.twig');
-    }
+    // #[Route("/profile", name: "profile")]
+    // public function index()
+    // {
+    //     return $this->render('front/user/profile.html.twig');
+    // }
 
     #[Route('/edit', name: 'edit')]
     public function changePassword(Request $request, UserPasswordHasherInterface $passwordHasher, UserAuthenticatorInterface $authenticator, AppAuthenticator $appAuthenticator): Response

@@ -7,10 +7,10 @@
         <nav class="main-nav" role="navigation">
           <ul class="unstyled list-hover-slide">
             <li><a href="{{ path('dashboard') }}"><i class="fa-solid fa-rss"></i> <span>Dashboard</span></a></li>
-            <li><a href="#"><i class="fa-brands fa-hotjar"></i> <span>Popular</span></a></li>
+            {# <li><a href="#"><i class="fa-brands fa-hotjar"></i> <span>Popular</span></a></li> #}
             <li><a href="{{ path('bookmarks') }}"><i class="fa-solid fa-bookmark"></i> <span>Bookmarks</span></a></li>
-            <li><a href="#"><i class="fa-solid fa-blog"></i> <span>Blog</span></a></li>
-            <li><a href="{{ path('profile') }}"><i class="fa-solid fa-user"></i> <span>My profile</span></a></li>
+            {# <li><a href="#"><i class="fa-solid fa-blog"></i> <span>Blog</span></a></li> #}
+            <li><a href="{{ path('edit') }}"><i class="fa-solid fa-user"></i> <span>My profile</span></a></li>
             {% if is_granted('ROLE_ADMIN')%}
             <li><a href="{{ path('admin') }}"><i class="fa-solid fa-lock"></i> <span>Admin</span></a></li>
             {% endif %}

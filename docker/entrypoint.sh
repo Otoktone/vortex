@@ -15,6 +15,7 @@ echo "      \_\/ \/_________/ \/_/    \_\/\_\/       \/__________/ \/_/     \_\/
 composer install -n
 
 php bin/console doctrine:migrations:migrate --no-interaction
-# php bin/console doctrine:fixtures:load --no-interaction
+php bin/console doctrine:fixtures:load --no-interaction
+php bin/console app:create-user admin
 
 exec "$@"

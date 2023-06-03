@@ -1,5 +1,5 @@
 <?php
-// src/Command/CreateUserCommand.php
+
 namespace App\Command;
 
 use App\Entity\User;
@@ -15,11 +15,11 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 // static $defaultName and $defaultDescription properties
 #[AsCommand(
     name: 'app:create-user',
-    description: 'Creates a new user.',
+    description: 'Creates a new admin',
     hidden: false,
     aliases: ['app:add-user']
 )]
-class CreateUserCommand extends Command
+class CreateAdminCommand extends Command
 {
     private EntityManagerInterface $entityManager;
 
@@ -35,14 +35,14 @@ class CreateUserCommand extends Command
     {
         $this
             // the command help shown when running the command with the "--help" option
-            ->setHelp('This command allows you to create a user...')
+            ->setHelp('This command allows you to create a user admin...')
             // configure an argument
-            ->addArgument('username', InputArgument::REQUIRED, 'The username of the user.')
+            ->addArgument('username', InputArgument::REQUIRED, 'The username and password of the user admin')
         ;
     }
 
     // the command description shown when running "php bin/console list"
-    protected static $defaultDescription = 'Creates a new user';
+    protected static $defaultDescription = 'Creates a new user admin';
 
     // the name of the command (the part after "bin/console")
     protected static $defaultName = 'app:create-user';
@@ -51,13 +51,13 @@ class CreateUserCommand extends Command
     {
         // outputs multiple lines to the console (adding "\n" at the end of each line)
         $output->writeln([
-            'User Creator',
+            'User Admin Creator',
             '============',
             '',
         ]);
 
         // outputs a message without adding a "\n" at the end of the line
-        $output->writeln('You are about to create a user');
+        $output->writeln('You are about to create a user admin');
 
         // retrieve the argument value using getArgument()
         $output->writeln('Username: '.$input->getArgument('username'));
@@ -70,7 +70,7 @@ class CreateUserCommand extends Command
             $user,
             $plaintextPassword
         );
-        $user->setUsername($username)->setPassword($hashedPassword)->setEmail('test@test.com')->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+        $user->setUsername($username)->setPassword($hashedPassword)->setEmail('admin@vortex.fr')->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();

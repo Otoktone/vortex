@@ -9,11 +9,37 @@ class FeedArticles extends React.Component {
     this.state = {
       articles: [],
       selectedArticle: null,
-      showModal: false
+      showModal: false,
+      selectedCategories: []
     };
   }
+
+  componentDidUpdate(prevProps) {
+    // check if categories have changed
+    if (prevProps.categories !== this.props.categories) {
+      this.fetchArticles();
+    }
+  }
+
+  fetchArticles = async () => {
+    const { categories } = this.props;
+
+    try {
+      const response = await fetch('http://localhost:80/api/feed/articles');
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Fetched articles: ", data);
+      } else {
+        console.error('Failed to fetch articles');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // wait until component is mounted
   async componentDidMount() {
+    this.fetchArticles();
     try {
       // fetch articles
       const res = await fetch(apiUrl);

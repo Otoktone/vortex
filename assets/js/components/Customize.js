@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 // api url develop TODO : change with env varibale
 const apiUrl = "http://localhost:80/api";
 
-function Customize({ userId, onUserIdChange }) {
+const Customize = ({ userId, onUserIdChange }) => {
   // define state variables
   const [showModal, setShowModal] = useState(false);
   const [categories, setCategories] = useState([]);

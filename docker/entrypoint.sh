@@ -12,9 +12,9 @@ echo "    \ \ \/ // / /___/ / // / /\ \ \  / / /      / / /______   / / /   \ \ 
 echo "     \ \  // / /____\/ // / /  \ \ \/_/ /      / / /_______\ / / /    /_/ / "
 echo "      \_\/ \/_________/ \/_/    \_\/\_\/       \/__________/ \/_/     \_\/  "
 
-# bin/console doc:mig:mig --no-interaction
-# bin/console doc:fix:load --no-interaction
-
 composer install -n
+
+php bin/console doctrine:migrations:migrate --no-interaction
+# php bin/console doctrine:fixtures:load --no-interaction
 
 exec "$@"

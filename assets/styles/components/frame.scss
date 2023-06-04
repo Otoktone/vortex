@@ -3,8 +3,10 @@
   background-image: url("../../images/grid_perspective.svg");
   background-repeat: no-repeat;
   background-size: cover;
+
   .frame_container {
     display: flex;
+
     .frame_box {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -15,28 +17,41 @@
         width: 100%;
         border: 1px solid $border;
         border-radius: 2px;
+
         &:hover {
           cursor: pointer;
           opacity: 0.9;
         }
       }
     }
+
     .frame_info {
       display: flex;
       flex-direction: column;
       width: 35vw;
+
       div {
+        display: none;
         position: absolute;
         opacity: 0;
         transition: opacity 0.5s;
         width: 35vw;
         padding: 10px;
+
+        &.active {
+          display: block;
+          opacity: 1;
+          transform: scale(1.2);
+          transition: transform 0.5s;
+        }
+
         h3 {
           font-family: "Goldman", sans-serif;
           text-transform: uppercase;
           color: $purple;
           font-size: 25px;
           letter-spacing: 2px;
+
           i {
             padding: 0 15px 0 0;
             font-size: 15px;
@@ -48,6 +63,7 @@
           text-align: justify;
         }
       }
+
       div.active {
         opacity: 1;
       }

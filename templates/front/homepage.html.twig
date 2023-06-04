@@ -8,14 +8,13 @@
     {% include "front/layout/header.html.twig" %}
     <section id="home" >
         <main>
-        <h2>Make your feed aggregator</h2>
-        <h1>Vortex Feed Aggregator</h1>
-        <p>A feed aggregator is a type of software that brings together various types of Web content and provides it in an easily accessible list.</p>
-        <a class="home_button" href="{{ path('dashboard') }}">Discover</a>
-        <div>
-            <img src="{{ asset('build/images/dashboard.png') }}" alt="">
-        </div>
-        {# <div class="test"></div> #}
+            <h2>Make your feed aggregator</h2>
+            <h1>Vortex Feed Aggregator</h1>
+            <p>A feed aggregator is a type of software that brings together various types of Web content and provides it in an easily accessible list.</p>
+            <a class="home_button" href="{{ path('dashboard') }}">Discover</a>
+            <div>
+                <img src="{{ asset('build/images/dashboard.png') }}" alt="">
+            </div>
         </main>
         <section id="banner">
             <div class="banner_box"></div>
@@ -78,14 +77,51 @@
             </div>
         </section> #}
         <section id="frame">
-        </section>
-        <section id="slider">
-        </section>
-        {# <section id="presentation">
-            <div>
-                <img src="{{ asset('build/images/logos/logo.svg') }}" alt="">
+            <div class='frame_container'>
+                <div class='frame_box'>
+                    {% for frame in frames %}
+                        <img
+                        src="{{ asset(frame.src) }}"
+                        onclick="handleClick({{ frame.id }})"
+                        class="{% if selectedPart.id == frame.id %}active{% else %}{% endif %}"
+                        />
+                    {% endfor %}
+                </div>
+                <div class='frame_info'>
+                    {% for frame in frames %}
+                        <div class='info{{ frame.id }} {% if selectedPart.id == frame.id %}active{% endif %}'>
+                            <h3><i class='{{ frame.class }}'></i>{{ frame.title }}</h3>
+                            <p>{{ frame.text }}</p>
+                            <p>{{ frame.description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-        </section> #}
+        </section>
+        <script>
+            function handleClick(id) {
+                const frameInfo = document.querySelector('.info' + id);
+                const frameInfos = document.querySelectorAll('.frame_info > div');
+
+                frameInfos.forEach(function (info) {
+                    info.classList.remove('active');
+                });
+
+                frameInfo.classList.add('active');
+            }
+        </script>
+
+        <section id="slider">
+            <div class='carousel_container'>
+                <div>
+                    <img src="{{ asset('build/images/dashboard.jpg') }}" alt="dasbhoard slider image"></img>
+                </div>
+                <div class='carousel_info'>
+                    <h3>titre</h3>
+                    <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
+                </div>
+            </div>
+        </section>
         {# <span class="loader"></span> #}
     </section>
     {% include "front/layout/footer.html.twig" %}

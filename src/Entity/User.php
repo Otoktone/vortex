@@ -19,8 +19,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    // #[Assert\Email(
+    //     message: 'The email {{ value }} is not a valid email.',
+    // )]
+    #[ORM\Column(length: 180, unique: true, nullable: false)]
+    private ?string $email;
 
     #[ORM\Column]
     private array $roles = [];
@@ -28,11 +31,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
-    #[ORM\Column]
-    private ?string $password = null;
+    #[ORM\Column(length: 255, nullable: false)]
+    private ?string $password;
 
-    #[ORM\Column(length: 255)]
-    private ?string $username = null;
+    #[ORM\Column(length: 255, nullable: false)]
+    private ?string $username;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageFile = null;

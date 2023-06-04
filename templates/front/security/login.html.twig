@@ -13,6 +13,16 @@
             <div class="register_logo" >
                 <img src="{{ asset('build/images/logos/register_logo.png') }}" alt="logo vortex login form">
             </div>
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-error">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
             {% if error %}
                 <div class="login_error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
@@ -22,11 +32,13 @@
                     Connected as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Deconnexion</a>
                 </div>
             {% endif %}
-            <div>
+            <div class="label">
+                <label for="email">Email</label>
                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus placeholder="Email">
             </div>
             <div class="register_password">
-                <div>
+                <div class="label">
+                    <label for="password">Password</label>
                     <input type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Password">
                     <i id="togglePassword" class="fa-solid fa-eye"></i>
                 </div>
@@ -44,7 +56,7 @@
             </div>
 
             <button class="btn btn-lg btn-primary" type="submit">
-                Sign in
+                Log in
             </button>
         </form>
     </section>

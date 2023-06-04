@@ -12,14 +12,26 @@
         {% for flash_error in app.flashes('verify_email_error') %}
             <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
         {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
 
         {{ form_start(registrationForm) }}
             <div class="register_logo" >
                 <img src="{{ asset('build/images/logos/register_logo.png') }}" alt="logo vortex register form">
             </div>
-            {{ form_row(registrationForm.username) }}
-            {{ form_row(registrationForm.email) }}
-            <div class="register_password">
+            <div class="label">
+                <label for="name">Name</label>
+                {{ form_row(registrationForm.username) }}
+            </div>
+            <div class="label">
+                <label for="email">Email</label>
+                {{ form_row(registrationForm.email) }}
+            </div>
+            <div class="register_password label">
+                <label for="password">Password</label>
                 {{ form_row(registrationForm.plainPassword) }}
                 <i id="togglePassword" class="fa-solid fa-eye"></i>
             </div>
@@ -30,9 +42,9 @@
                 </label>
                 <span><a href="">Agree terms</a></span>
             </div>
-            <button type="submit" class="btn">Register</button>
+            <button type="submit" class="btn">Sign up</button>
             <div class="register_login">
-                <span>Already an account ? </span><a href="{{ path('app_login') }}">Sign in</a>
+                <span>Already an account ? </span><a href="{{ path('app_login') }}">Log in</a>
             </div>
         {{ form_end(registrationForm) }}
     </section>

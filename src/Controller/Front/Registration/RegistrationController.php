@@ -3,22 +3,23 @@
 namespace App\Controller\Front\Registration;
 
 use App\Entity\User;
+use Http\Client\Exception;
+use App\Security\EmailVerifier;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
-use App\Security\EmailVerifier;
+use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Address;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
+use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -43,6 +44,8 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // if ($form['agreeTerms']->getData() === true) {
 
+            try {
+
                 // encode the plain password
                 $user->setPassword(
                     $userPasswordHasher->hashPassword(
@@ -63,26 +66,36 @@ class RegistrationController extends AbstractController
                     ['id' => $user->getId()]
                 );
 
-                $this->addFlash('success', 'Confirm your email at: ' . $signatureComponents->getSignedUrl());
+                $this->addFlash('success', 'Your account has been created');
+                //$this->addFlash('success', 'Confirm your email at: ' . $signatureComponents->getSignedUrl());
+
+                // TODO : SEND EMAIL
 
                 // generate a signed url and email it to the user
-                $this->emailVerifier->sendEmailConfirmation(
-                    'app_verify_email',
-                    $user,
-                    (new TemplatedEmail())
-                        ->from(new Address('noreply@vortex.com', 'Vortex'))
-                        ->to($user->getEmail())
-                        ->subject('Please Confirm your Email')
-                        ->htmlTemplate('front/registration/confirmation_email.html.twig')
-                );
+                // $this->emailVerifier->sendEmailConfirmation(
+                //     'app_verify_email',
+                //     $user,
+                //     (new TemplatedEmail())
+                //         ->from(new Address('noreply@vortex.com', 'Vortex'))
+                //         ->to($user->getEmail())
+                //         ->subject('Please Confirm your Email')
+                //         ->htmlTemplate('front/registration/confirmation_email.html.twig')
+                // );
                 // do anything else you need here, like send an email
+
+                // TODO : AUTH LE USER
 
                 // return $userAuthenticator->authenticateUser(
                 //     $user,
                 //     $authenticator,
                 //     $request
                 // );
-                return $this->redirectToRoute('app_verify_email');
+            } catch (Exception $e) {
+
+                $this->addFlash('error', 'Account has not been created');
+            }
+
+            return $this->redirectToRoute('app_verify_email');
             // }
         }
 

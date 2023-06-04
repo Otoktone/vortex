@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\ManyToMany;
 use App\Repository\FeedArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -35,7 +34,7 @@ class FeedArticle
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $media = null;
 
-    #[ManyToMany(targetEntity: User::class, mappedBy: 'favoriteArticles')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoriteArticles')]
     private Collection $users;
 
     public function __construct()

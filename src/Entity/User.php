@@ -46,7 +46,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Category::class)]
     private Collection $categories;
 
-    #[ORM\ManyToMany(targetEntity: FeedArticle::class)]
+    #[ORM\ManyToMany(targetEntity: FeedArticle::class, inversedBy: 'users')]
+    #[ORM\JoinTable(name: "user_favorite_articles")]
     private Collection $favoriteArticles;
 
     public function __construct()

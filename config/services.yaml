@@ -26,3 +26,7 @@ services:
     App\Service\ArticleGenerator:
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
+
+    App\Command\GenerateArticlesCommand:
+        tags:
+            - {name: 'console.command', command: 'app:generate-articles'}

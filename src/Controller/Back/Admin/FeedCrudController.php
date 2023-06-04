@@ -18,7 +18,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\{ChoiceField, IdField, EmailField, Ima
 class FeedCrudController extends AbstractCrudController
 {
 
-    public const ACTION_GENERATE = "generate";
+    // public const ACTION_GENERATE = "generate";
 
     public function __construct()
     {
@@ -86,14 +86,14 @@ class FeedCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Flux RSS');
     }
 
-    public function configureActions(Actions $actions): Actions
-    {
-        $generate = Action::new(self::ACTION_GENERATE)
-            ->displayAsLink('generate_article_route')
-            ->linkToRoute('generate_article_route')
-            ->setCssClass('btn btn-danger');
+    // public function configureActions(Actions $actions): Actions
+    // {
+    //     $generate = Action::new(self::ACTION_GENERATE)
+    //         ->displayAsLink('generate_article_route')
+    //         ->linkToRoute('generate_article_route')
+    //         ->setCssClass('btn btn-danger');
 
-        return $actions
-            ->add(Crud::PAGE_INDEX, $generate);
-    }
+    //     return $actions
+    //         ->add(Crud::PAGE_INDEX, $generate);
+    // }
 }

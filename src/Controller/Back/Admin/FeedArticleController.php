@@ -38,12 +38,21 @@ class FeedArticleController extends AbstractCrudController
         return new JsonResponse(['message' => 'Articles generated']);
     }
 
-    #[Route('/generate-article', name: 'generate_article_route')]
-    public function generateArticleAction()
+    #[Route('/generate-article/{id}', name: 'generate_article_route', requirements: ['id' => '\d+'], defaults: ['id' => null])]
+    public function generateArticleAction(?int $id = null, ArticleGenerator $articleGenerator)
     {
-        $this->generateArticleFromRss();
 
-        return new JsonResponse(['message' => 'Articles generated']);
+        if ($id !== null) {
+            // calling ArticleGenerator service with id param
+            $articleGenerator->generateArticleFromRss($id);
+            $message = 'Articles generated for flux with id : ' . $id;
+        } else {
+            // calling ArticleGenerator service with all flux
+            $articleGenerator->generateArticleFromRss();
+            $message = 'Articles generated for all flux';
+        }
+
+        return new JsonResponse(['message' => $message]);
     }
 
     public function configureFields(string $pageName): iterable

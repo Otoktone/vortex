@@ -103,6 +103,9 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Articles', 'fa fa-file', FeedArticle::class),
             MenuItem::linkToCrud('Categories', 'fa fa-list', Category::class),
 
+            MenuItem::section('Actions'),
+            MenuItem::linkToRoute('Generate Articles', 'fa fa-layer-group', 'generate_article_route'),
+
             MenuItem::section('Back to Vortex'),
             MenuItem::linkToRoute('Home', 'fa fa-home', 'home'),
         ];

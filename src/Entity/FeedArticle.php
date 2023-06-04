@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\FeedArticleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToMany;
+use App\Repository\FeedArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: FeedArticleRepository::class)]
 class FeedArticle
@@ -35,7 +38,8 @@ class FeedArticle
     #[ManyToMany(targetEntity: User::class, mappedBy: 'favoriteArticles')]
     private Collection $users;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->users = new ArrayCollection();
     }
 

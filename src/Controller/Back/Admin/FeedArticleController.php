@@ -67,6 +67,7 @@ class FeedArticleController extends AbstractCrudController
         $currentYear = (int) (new \DateTime())->format('Y');
 
         $items = [];
+        $filteredItems = [];
         foreach ($this->validFeeds as $feed) {
             if ($this->isValidFeedUrl($feed->getUrl())) {
                 // if url is valid then read the feed
@@ -133,7 +134,11 @@ class FeedArticleController extends AbstractCrudController
                 $newFilteredItem->setContent($filteredItem['content']);
                 $newFilteredItem->setLink($filteredItem['link']);
                 $newFilteredItem->setDate($filteredItem['date']->format('Y-m-d H:i:s'));
-                // $newFilteredItem->setMedia($filteredItem['media']['imageUrl']);
+                if (isset($filteredItem['media']['imageUrl'])) {
+                    $newFilteredItem->setMedia($filteredItem['media']['imageUrl']);
+                } else {
+                    $newFilteredItem->setMedia(null);
+                }
                 $newFilteredItem->setCategory($filteredItem['category']);
                 $this->entityManager->persist($newFilteredItem);
             }

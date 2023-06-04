@@ -48,6 +48,11 @@ class UserDashboardController extends AbstractController
         $feedArticles = $feedArticleRepository->findAll();
         shuffle($feedArticles);
 
+        // remove users from serialization (avoid cycling error)
+        foreach ($feedArticles as $feedArticle) {
+            $feedArticle->getUsers()->clear();
+        }
+
         return $this->json($feedArticles);
     }
 

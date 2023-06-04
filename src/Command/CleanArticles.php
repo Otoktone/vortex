@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 // the "name" and "description" arguments of AsCommand replace the
 // static $defaultName and $defaultDescription properties
+// php bin/console app:clean-articles
 #[AsCommand(
     name: 'app:clean-articles',
     description: 'Clean old articles',
@@ -66,7 +67,7 @@ class CleanArticles extends Command
 
         $this->entityManager->flush();
 
-        $output->writeln('You have removed '. $removedArticles . 'articles');
+        $output->writeln('You have removed ' . $removedArticles . 'articles');
 
         return Command::SUCCESS;
     }

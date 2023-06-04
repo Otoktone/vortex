@@ -39,26 +39,26 @@ class FeedArticleRepository extends ServiceEntityRepository
         }
     }
 
-//     public function deleteArticles(): array
-//    {
+    //     public function deleteArticles(): array
+    //    {
 
 
-//         $query = $this->createQuery(
-//             'SELECT a, u
-//             FROM App\Entity\FeedArticle a
-//             LEFT JOIN a.user u
-//             WHERE a.id NOT NULL'
-//         )->setParameter('id', $articleId);
+    //         $query = $this->createQuery(
+    //             'SELECT a, u
+    //             FROM App\Entity\FeedArticle a
+    //             LEFT JOIN a.user u
+    //             WHERE a.id NOT NULL'
+    //         )->setParameter('id', $articleId);
 
 
 
-//        return $this->createQueryBuilder('feedArticles')
-//             ->leftJoin('a.Category c')
-//            ->andWhere('feedArticles.user_feed_article = IS NOT NULL')
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //        return $this->createQueryBuilder('feedArticles')
+    //             ->leftJoin('a.Category c')
+    //            ->andWhere('feedArticles.user_feed_article = IS NOT NULL')
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
     //DQL: https://symfony.com/doc/5.4/doctrine.html#querying-with-the-query-builder
     public function findAllArticleWithoutUserByDateDQL($date): array
@@ -69,7 +69,7 @@ class FeedArticleRepository extends ServiceEntityRepository
             ->join('fa.users', 'u')
             ->where('u IS NULL')
             //->setParameter('price', $price)
-            ;
+        ;
 
         // if (!$includeUnavailableProducts) {
         //     $qb->andWhere('p.available = TRUE');
@@ -90,7 +90,7 @@ class FeedArticleRepository extends ServiceEntityRepository
 
         $sql = '
             SELECT * FROM feed_article fa
-            LEFT JOIN user_feed_article u
+            LEFT JOIN user_favorite_articles u
             ON fa.id = u.feed_article_id
             ';
         $stmt = $conn->prepare($sql);
@@ -100,28 +100,28 @@ class FeedArticleRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }
 
-//    /**
-//     * @return FeedArticle[] Returns an array of FeedArticle objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('f.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return FeedArticle[] Returns an array of FeedArticle objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('f')
+    //            ->andWhere('f.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('f.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?FeedArticle
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?FeedArticle
+    //    {
+    //        return $this->createQueryBuilder('f')
+    //            ->andWhere('f.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

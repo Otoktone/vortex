@@ -177,6 +177,13 @@ class FeedArticleController extends AbstractCrudController
             ->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('')
+            ->setEntityLabelInPlural('Articles');
+    }
+
     // public function configureFilters(Filters $filters): Filters
     // {
     //     return $filters

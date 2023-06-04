@@ -31,7 +31,7 @@ class UserCrudController extends AbstractCrudController
     {
         $fields = [
             IdField::new('id')->hideOnForm(),
-            TextField::new('username')->setLabel('Pseudo'),
+            TextField::new('username')->setLabel('Username'),
             EmailField::new('email')->setLabel('Email'),
             ImageField::new('imageFile')->setLabel('Image')->setBasePath('build/images/users/')->setUploadDir('assets/images/users/')->setFormType(FileUploadType::class)->setUploadedFileNamePattern('[randomhash].[extension]'),
             ChoiceField::new('roles')->allowMultipleChoices(true)->setChoices([
@@ -94,6 +94,6 @@ class UserCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('')
-            ->setEntityLabelInPlural('Utilisateur');
+            ->setEntityLabelInPlural('Users');
     }
 }

@@ -95,13 +95,13 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Menu'),
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
-            MenuItem::section('Utilisateurs'),
-            MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class),
+            MenuItem::section('Users'),
+            MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
 
             MenuItem::section('Flux'),
             MenuItem::linkToCrud('Flux RSS', 'fa fa-rss', Feed::class),
             MenuItem::linkToCrud('Articles', 'fa fa-file', FeedArticle::class),
-            MenuItem::linkToCrud('Catégories', 'fa fa-list', Category::class),
+            MenuItem::linkToCrud('Categories', 'fa fa-list', Category::class),
 
             MenuItem::section('Back to Vortex'),
             MenuItem::linkToRoute('Home', 'fa fa-home', 'home'),
@@ -121,12 +121,12 @@ class DashboardController extends AbstractDashboardController
         // }
 
         return parent::configureUserMenu($user)
-        // ->setAvatarUrl($imagePath)
-        ->setName($user->getUsername())
-        // ->addMenuItems([
-        //     MenuItem::linkToRoute('Mon Profil', 'fa fa-id-card', '...', ['...' => '...']),
-        //     MenuItem::linkToRoute('Paramètres', 'fa fa-user-cog', '...', ['...' => '...']),
-        // ])
+            // ->setAvatarUrl($imagePath)
+            ->setName($user->getUsername())
+            // ->addMenuItems([
+            //     MenuItem::linkToRoute('Mon Profil', 'fa fa-id-card', '...', ['...' => '...']),
+            //     MenuItem::linkToRoute('Paramètres', 'fa fa-user-cog', '...', ['...' => '...']),
+            // ])
         ;
     }
 }

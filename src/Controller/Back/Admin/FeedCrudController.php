@@ -73,7 +73,7 @@ class FeedCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('')
-            ->setEntityLabelInPlural('Flux');
+            ->setEntityLabelInPlural('Flux RSS');
     }
 
     public function configureActions(Actions $actions): Actions

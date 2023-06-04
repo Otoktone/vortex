@@ -72,7 +72,7 @@ class CategoryCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('')
-            ->setEntityLabelInPlural('Catégories');
+            ->setEntityLabelInPlural('Categories');
     }
 
     public function configureActions(Actions $actions): Actions

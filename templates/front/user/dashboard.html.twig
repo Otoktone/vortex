@@ -7,6 +7,90 @@
 {% block body %}
 {% include "front/user/header.html.twig" %}
   <section id="feed">
+    <div class="feedContainer">
+      {% for article in items %}
+        <div class="feedItem" onClick="openModal('{{ article.id }}')">
+            <div>
+                <div class="feedTitle">
+                    <p>{{ article.category|capitalize }}</p>
+                    <h3>{{ article.title|capitalize|slice(0, 100) }}...</h3>
+                </div>
+                <div class="feedImage">
+                    <img src="{{ article.media ?? 'build/images/icons/favicon.png' }}" alt="{{ article.title }}" />
+                </div>
+                <div class="feedContent">
+                    <p>{{ article.content|slice(0, 100) }}...</p>
+                </div>
+                <div class="feedDateContainer">
+                    <div class="feedDate">{{ article.date }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-{{ article.id }}">
+            <div class="modalContent">
+                <div class="modalTitle">
+                    <p>{{ article.category|capitalize }}</p>
+                    <h3>{{ article.title|capitalize }}</h3>
+                </div>
+                <div class="modalImage">
+                    <img src="{{ article.media ?? 'build/images/icons/favicon.png' }}" alt="{{ article.title }}" />
+                </div>
+                <div>
+                    <p>{{ article.content }}</p>
+                </div>
+                <div class="modalDateContainer">
+                    <div class="modalDate">{{ article.date }}</div>
+                </div>
+                <div class="modalLink">
+                    <a class="home_button" href="{{ article.link }}" target="_blank">
+                        <i class="fa-solid fa-external-link"></i> Open article
+                    </a>
+                    <span class="home_button" onClick="addBookmark('{{ article.id }}')">
+                        <i class="fa-solid fa-bookmark"></i> Add to bookmarks
+                    </span>
+                </div>
+                <span class="close" onClick="closeModal('{{ article.id }}')">&times;</span>
+            </div>
+        </div>
+      {% endfor %}
+
+      <script>
+        function openModal(articleId) {
+            const modal = document.getElementById('modal-' + articleId);
+            modal.style.display = 'flex';
+        }
+
+        function closeModal(articleId) {
+            const modal = document.getElementById('modal-' + articleId);
+            modal.style.display = 'none';
+        }
+      </script>
+
+
+        {# <div class="modal">
+          <div class="modalContent">
+            <div class="modalTitle">
+              <p>{selectedArticle.category[0].toUpperCase() + selectedArticle.category.substr(1).toLowerCase()}</p>
+              <h3>{selectedArticle.title[0].toUpperCase() + selectedArticle.title.substr(1).toLowerCase()}</h3>
+            </div>
+            <div class="modalImage">
+              <img src={selectedArticle.media || 'build/images/icons/favicon.png'} alt={selectedArticle.title} />
+            </div>
+            <div class="">
+              <p>{selectedArticle.content}</p>
+            </div>
+            <div class="modalDateContainer">
+              <div class="modalDate">{selectedArticle.date}</div>
+            </div>
+            <div class="modalLink">
+              <a class="home_button" href={selectedArticle.link} target="_blank"><i class="fa-solid fa-external-link"></i> Open article</a>
+              <span class="home_button" onClick={() => this.addBookmark(selectedArticle.id)}><i class="fa-solid fa-bookmark"></i> Add to bookmarks</span>
+            </div>
+            <span class="close" onClick={this.closeModal}>&times;</span>
+          </div>
+        </div> #}
+    </div>
   </section>
   {% include "front/layout/sidebar.html.twig" %}
 {% endblock %}

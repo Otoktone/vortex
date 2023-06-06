@@ -27,17 +27,23 @@ class UserDashboardController extends AbstractController
     {
         $user = $this->getUser();
         $userId = $user->getId();
+
         $feedRepository = $this->entityManager->getRepository(Feed::class);
         $feeds = $feedRepository->findAll();
-        // $feedArticleRepository = $this->entityManager->getRepository(FeedArticle::class);
-        // $feedArticles = $feedArticleRepository->findAll();
 
-        // shuffle($feedArticles);
+        $feedArticleRepository = $this->entityManager->getRepository(FeedArticle::class);
+        $feedArticles = $feedArticleRepository->findAll();
+
+        $categoryRepository = $this->entityManager->getRepository(Category::class);
+        $categories = $categoryRepository->findAll();
+
+        shuffle($feedArticles);
 
         return $this->render('front/user/dashboard.html.twig', [
             'feeds' => $feeds,
             'userId' => $userId,
-            // 'items' => $feedArticles,
+            'items' => $feedArticles,
+            'categories' => $categories,
         ]);
     }
 

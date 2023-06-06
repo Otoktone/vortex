@@ -13,6 +13,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 // the "name" and "description" arguments of AsCommand replace the
 // static $defaultName and $defaultDescription properties
+// php bin/console app:create-user
 #[AsCommand(
     name: 'app:create-user',
     description: 'Creates a new admin',
@@ -37,8 +38,7 @@ class CreateAdminCommand extends Command
             // the command help shown when running the command with the "--help" option
             ->setHelp('This command allows you to create a user admin...')
             // configure an argument
-            ->addArgument('username', InputArgument::REQUIRED, 'The username and password of the user admin')
-        ;
+            ->addArgument('username', InputArgument::REQUIRED, 'The username and password of the user admin');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -54,7 +54,7 @@ class CreateAdminCommand extends Command
         $output->writeln('You are about to create a user admin');
 
         // retrieve the argument value using getArgument()
-        $output->writeln('Username: '.$input->getArgument('username'));
+        $output->writeln('Username: ' . $input->getArgument('username'));
 
         $user = new User();
         $username = $input->getArgument('username');

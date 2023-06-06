@@ -1,21 +1,52 @@
 # Project Vortex
 
-A brief description of what this project does and who it's for
+Vortex is a web application about flux aggregation.
+You can add flux url and generate articles from it.
 
 ## Installation
 
-Install my-project with npm
+Install vortex with Docker :
 
 ```bash
-  npm install my-project
-  cd my-project
+  docker-compose build
+```
+Run my-project with Docker :
+
+```bash
+  docker-compose up
+```
+
+## Custom commands
+
+Create admin user :
+
+```bash
+  php bin/console app:create-user
+```
+
+Load fixtures :
+
+```bash
+  php bin/console doctrine:fixtures:load
+```
+
+Create admin user :
+
+```bash
+  php bin/console app:generate-articles
+```
+
+Clean articles :
+
+```bash
+  php bin/console app:clean-articles
 ```
 
 ## Tech Stack
 
-**Client:** React, Redux, TailwindCSS
+**Client:** Twig
 
-**Server:** Node, Express
+**Server:** Symfony, Node
 
 ## Authors
 

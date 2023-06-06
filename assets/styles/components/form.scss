@@ -8,6 +8,11 @@ form {
     box-shadow: 0 0 10px #000;
     color: rgba(215, 215, 215, 0.75);
 
+    .alert {
+        display: flex;
+        justify-content: center;
+    }
+
     div {
         ul {
             position: relative;

@@ -22,6 +22,7 @@
       opacity: 0.8;
       font-family: "Goldman", sans-serif;
       text-transform: uppercase;
+      text-align: center;
     }
 
     h1 {
@@ -36,7 +37,8 @@
 
     p {
       margin: 0;
-      width: 700px;
+      width: 100%;
+      max-width: 700px;
       text-align: center;
       opacity: 0.6;
     }

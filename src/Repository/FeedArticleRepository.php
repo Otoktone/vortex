@@ -60,27 +60,18 @@ class FeedArticleRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //DQL: https://symfony.com/doc/5.4/doctrine.html#querying-with-the-query-builder
+    // DQL: https://symfony.com/doc/5.4/doctrine.html#querying-with-the-query-builder
     public function findAllArticleWithoutUserByDateDQL($date): array
     {
-        // automatically knows to select Products
-        // the "p" is an alias you'll use in the rest of the query
         $qb = $this->createQueryBuilder('fa')
             ->join('fa.users', 'u')
             ->where('u IS NULL')
-            //->setParameter('price', $price)
-        ;
-
-        // if (!$includeUnavailableProducts) {
-        //     $qb->andWhere('p.available = TRUE');
-        // }
+            ->andWhere('fa.date < :date')
+            ->setParameter('price', $date);
 
         $query = $qb->getQuery();
 
         return $query->execute();
-
-        // to get just one result:
-        // $product = $query->setMaxResults(1)->getOneOrNullResult();
     }
 
     // SQL: https://symfony.com/doc/5.4/doctrine.html#querying-with-sql
@@ -92,6 +83,8 @@ class FeedArticleRepository extends ServiceEntityRepository
             SELECT * FROM feed_article fa
             LEFT JOIN user_favorite_articles u
             ON fa.id = u.feed_article_id
+            WHERE u.feed_article_id IS NULL
+            AND fa.date < :date
             ';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();

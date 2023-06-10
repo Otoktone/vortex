@@ -4,6 +4,7 @@ namespace App\Command;
 
 use App\Entity\User;
 use App\Entity\FeedArticle;
+use App\Repository\FeedArticleRepository;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -23,10 +24,12 @@ use Doctrine\ORM\EntityManagerInterface;
 class CleanArticles extends Command
 {
     private EntityManagerInterface $entityManager;
+    private FeedArticleRepository $feedArticleRepository;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, FeedArticleRepository $feedArticleRepository)
     {
         $this->entityManager = $entityManager;
+        $this->feedArticleRepository = $feedArticleRepository;
 
         parent::__construct();
     }
@@ -54,15 +57,20 @@ class CleanArticles extends Command
         $output->writeln('You are about to clean old articles from database');
 
         // retrieve the argument value using getArgument()
-        // $output->writeln('Limit: '.$input->getArgument('limit'));
+        // $period = $input->getArgument('period');
 
-        $articles = $this->entityManager->getRepository(FeedArticle::class)->findAllArticleWithoutUserByDateSQL('');
+        $threeMonthsAgo = new \DateTime('-3 months');
+        $date = $threeMonthsAgo->format('Y-m-d');
+
+        // $articles = $this->feedArticleRepository->findAllArticleWithoutUserByDateSQL($date);
+
+        $articles = $this->feedArticleRepository->findAllArticleWithoutUserByDateDQL($date);
 
         // check article date of creation
         $removedArticles = 0;
         foreach ($articles as $article) {
+            $this->feedArticleRepository->remove($article, true);
             $removedArticles++;
-            $this->entityManager->remove($article);
         }
 
         $this->entityManager->flush();

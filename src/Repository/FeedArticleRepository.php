@@ -67,7 +67,7 @@ class FeedArticleRepository extends ServiceEntityRepository
             ->join('fa.users', 'u')
             ->where('u IS NULL')
             ->andWhere('fa.date < :date')
-            ->setParameter('price', $date);
+            ->setParameter('date', $date);
 
         $query = $qb->getQuery();
 

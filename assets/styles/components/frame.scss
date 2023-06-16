@@ -69,4 +69,26 @@
       }
     }
   }
+
+  @media (max-width: 992px) {
+    .frame_container {
+      flex-direction: column;
+      align-items: center;
+
+      .frame_box {
+        width: 100%;
+      }
+
+      .frame_info {
+        width: 100%;
+
+        div {
+          width: 100%;
+          position: relative;
+          padding: 0;
+          transform: none !important;
+        }
+      }
+    }
+  }
 }

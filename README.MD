@@ -18,6 +18,12 @@ Run my-project with Docker :
 
 ## Custom commands
 
+Connect to container first
+
+```bash
+  docker exec -ti vortex bash
+```
+
 Create admin user :
 
 ```bash

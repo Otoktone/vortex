@@ -17,7 +17,7 @@ class ChangePasswordType extends \Symfony\Component\Form\AbstractType
         $builder
             ->add('currentPassword', PasswordType::class, [
                 'mapped' => false,
-                'label' => 'Old password',
+                'label' => 'Current paswword',
                 'attr' => [
                     'placeholder' => 'Your current paswword',
                 ],

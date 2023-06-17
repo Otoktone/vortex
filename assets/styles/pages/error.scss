@@ -1,0 +1,80 @@
+#error {
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    background-color: $black;
+    padding-bottom: 150px;
+
+    .code_error,
+    .error {
+        text-shadow: 1px 0px 4px $lagoon, 2px 0px 4px $lagoon, 3px 0px 4px $lagoon, 2px 0px 3px $purple, 2px 3px 15px $purple, 2px 0px 15px, 5px 0px 125px, 20px 0vw 200px $purple, 40px 0vw 200px $purple;
+    }
+
+    .code_error {
+        font-size: 10rem;
+        letter-spacing: 10px;
+        color: $white;
+        font-family: "Goldman", sans-serif;
+
+    }
+
+    .error {
+        font-size: 5rem;
+        letter-spacing: 5px;
+        color: $white;
+        text-transform: uppercase;
+        font-family: "Goldman", sans-serif;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-top: 50px;
+        text-transform: uppercase;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    a {
+        width: auto;
+    }
+
+    .flicker-slow {
+        animation: flicker 3s linear infinite;
+    }
+
+    .flicker-fast {
+        animation: flicker 1s linear infinite;
+    }
+
+    @keyframes flicker {
+
+        0%,
+        19.999%,
+        22%,
+        62.999%,
+        64%,
+        64.999%,
+        70%,
+        100% {
+            //text-shadow: none;
+            opacity: .99;
+
+        }
+
+        20%,
+        21.999%,
+        63%,
+        63.999%,
+        65%,
+        69.999% {
+            opacity: 0.4;
+        }
+    }
+
+}

@@ -9,26 +9,80 @@ header {
   height: 60px;
   border-bottom: 1px solid $border;
   z-index: 9999;
+
   div {
     display: flex;
     align-items: center;
+
     img {
       width: 3rem;
       padding: 10px;
       opacity: 0.5;
+
       &:hover {
         transform: rotate(360deg);
         transition: 3s;
       }
     }
   }
+
   nav {
     display: flex;
     align-items: center;
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    .menu-icon {
+      display: none;
+      cursor: pointer;
+      font-size: 25px;
+      margin-right: 20px;
+      color: $white;
+      opacity: 0.8;
+    }
+
     ul {
       display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: $dark;
+        opacity: 0.95;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: visibility 0s, opacity 0.3s, transform 0.3s;
+        z-index: 99;
+        margin: 0;
+        padding: 0;
+
+        li {
+          width: 100%;
+          text-align: center;
+          padding: 15px 0;
+
+          a {
+            text-transform: uppercase;
+            color: $white !important;
+            opacity: 0.5;
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+
       li {
         list-style-type: none;
+
         a {
           display: inline-block;
           text-decoration: none;
@@ -39,6 +93,7 @@ header {
           margin-left: 0;
           margin-right: 0;
           font-size: 15px;
+
           &:after {
             content: "";
             display: block;
@@ -49,15 +104,41 @@ header {
             position: relative;
             bottom: -21px;
           }
+
           &:hover::after {
             width: 100%;
           }
+
           &:hover {
             color: $white;
             opacity: 1;
             transition: 2s;
           }
         }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      .menu-icon {
+        display: block;
+      }
+
+      ul {
+        flex-direction: column;
+
+        li {
+          width: 100%;
+          text-align: center;
+          padding: 15px 0;
+          border-bottom: 1px solid $border;
+        }
+      }
+
+      input[type="checkbox"]:checked~ul {
+        visibility: visible;
+        transform: translateY(0);
       }
     }
   }

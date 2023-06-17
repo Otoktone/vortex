@@ -1,0 +1,43 @@
+{% extends "front/layout/layout.html.twig" %}
+
+{% block javascripts %}
+{{ encore_entry_script_tags('home') }}
+{% endblock %}
+
+{% block body %}
+{% include "front/layout/header.html.twig" %}
+
+{% block content %}
+    <section id="legal">
+        <div class="background">
+            <div>
+                <h1>Vortex - Legal notices</h1>
+                <div>
+                    <h2>Website Terms &amp; Conditions</h2>
+                    <p>Website Editor: Mr Alexandre DESMOT, Web Developer.</p>
+                    <p>This Website is hosted by ******</p>
+                    <p>Webmaster contact: <a href="mailto:alexandre.desmot@otoktone.fr">alexandre.desmot@otoktone.fr</a></p>
+                    <p>Consulting this Website by any Internet user (hereinafter the "User") automatically implies his/her approval and acceptance to the following terms of use.</p>
+                </div>
+                <div>
+                    <h3>Purpose of the Website</h3>
+                    <p>The purpose of this Website is to provide articles form flux agregation. Vortex is a student project.</p>
+                </div>
+                <div>
+                    <h3>Intellectual property rights</h3>
+                    <p>The Website is owned and operated by Alexandre Desmot.</p>
+                    <p>The Website or its Content may not be copied and/or displayed, whether in full or in part, in any medium whatsoever for any other purposes, including for commercial purposes.</p>
+                    <p>The reproduction or unauthorized use of any Content may constitute a criminal offence.</p>
+                    <p></p>
+                </div>
+                <div>
+                    <h3>Links</h3>
+                    <p>Vortex may provide links to other websites. These websites are independent from the Website. Vortex will not edit or control the sources and contents of these websites or links thereof to other websites. Links to such websites shall not be deemed, in any way whatsoever, to represent any approval or validation of or adherence from Vortex to the contents of such websites. Vortex will therefore not be held liable for the contents, products, services, advertising, cookies or other elements of these websites and any actual or alleged damages or losses consequential to or relating to the use of such information, services or data available over these websites.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% include "front/layout/footer.html.twig" %}
+{% endblock %}

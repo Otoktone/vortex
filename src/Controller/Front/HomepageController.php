@@ -69,4 +69,22 @@ class HomepageController extends AbstractController
             'controller' => 'HomepageController'
         ));
     }
+
+    #[Route('/policies', name: 'policies')]
+    public function policies(): Response
+    {
+        return $this->render('front/policies.html.twig');
+    }
+
+    #[Route('/legal-notices', name: 'legal')]
+    public function legal(): Response
+    {
+        return $this->render('front/legal.html.twig');
+    }
+
+    #[Route('/cookies', name: 'cookies')]
+    public function cookies(): Response
+    {
+        return $this->render('front/cookies.html.twig');
+    }
 }

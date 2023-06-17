@@ -1,0 +1,35 @@
+{% extends "front/layout/layout.html.twig" %}
+
+{% block javascripts %}
+{{ encore_entry_script_tags('home') }}
+{% endblock %}
+
+{% block body %}
+{% include "front/layout/header.html.twig" %}
+
+{% block content %}
+    <section id="policies">
+        <div class="background">
+            <div>
+                <h1>Policies</h1>
+                <div>
+                    <h3>Collecting « cookies » browsing statistic information</h3>
+                    <p>Certain information may be recorded by Vortex servers (browser used, IP address...). None of the information recorded will consist of personal data and will not enable Vortex to identify the User. In addition, logging in to our Web server may result in our server sending out a small number of data which will be stored on the User's computer's disc. These are cookies recording information on browsing by Users of our Website (pages consulted, date and hour of consultation, etc.). Each browser contains a function used to reject "cookies" (terms are set out in the Website of the CNIL (French National Commission on Informatics and Liberties)).</p>
+                </div>
+                <div>
+                    <h3>Collecting and using personal data</h3>
+                    <p>Personal information regarding Users may be collected through this Website with the agreement of the User. This information will be used for the sole purpose of replying to the request of the Users in the most efficient way.
+
+In accordance with the French law “Loi n°78-17 du 06 janvier 1978 relative à l'informatique, aux fichiers et aux libertés” as amended, the User has a right to access, to modify, to rectify and to suppress its personal data, simply by requesting it on line at: <a href="mailto:alexandre.desmot@otoktone.fr">alexandre.desmot@otoktone.fr</a>
+
+These personal data are intended to be used by Vortex only and Vortex is responsible for processing and preserving such data. Vortex undertakes to take all reasonable measures to treat such personal data in confidentiality.
+
+Any change as may have been requested will be made in a timely manner. Whenever personal data are collected over the Website, legal terms applying to the collection and/or modification of data collected will be expressly stated again.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% include "front/layout/footer.html.twig" %}
+{% endblock %}

@@ -60,9 +60,11 @@ class CleanArticles extends Command
         // $period = $input->getArgument('period');
 
         $threeMonthsAgo = new \DateTime('-3 months');
-        $date = $threeMonthsAgo->format('Y-m-d');
+        $date = $threeMonthsAgo->format('Y-m-d H:i:s');
 
         // $articles = $this->feedArticleRepository->findAllArticleWithoutUserByDateSQL($date);
+
+        // $articles = $this->feedArticleRepository->findAll();
 
         $articles = $this->feedArticleRepository->findAllArticleWithoutUserByDateDQL($date);
 
@@ -75,7 +77,7 @@ class CleanArticles extends Command
 
         $this->entityManager->flush();
 
-        $output->writeln('You have removed ' . $removedArticles . 'articles');
+        $output->writeln('You have removed ' . $removedArticles . ' articles');
 
         return Command::SUCCESS;
     }

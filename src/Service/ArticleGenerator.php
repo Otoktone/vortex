@@ -128,8 +128,7 @@ class ArticleGenerator
                     $category = $this->entityManager->getRepository(Category::class)->findOneBy(['name' => $filteredItem['category']]);
                     // create categories associated with filteredItems (articles) and only persist if linked to an article
                     if (!$category) {
-                        $category = new Category();
-                        $category->setName($filteredItem['category']);
+                        $category = $this->createCategory($filteredItem['category']);
                     }
                     if ($category) {
                         $category->addFeedArticle($newFilteredItem);
@@ -154,5 +153,20 @@ class ArticleGenerator
     public function generateArticle()
     {
         $this->generateArticleFromRss();
+    }
+
+    private function createCategory(string $name): Category
+    {
+        $existingCategory = $this->entityManager->getRepository(Category::class)->findOneBy(['name' => $name]);
+        if ($existingCategory) {
+            return $existingCategory;
+        }
+
+        $category = new Category();
+        $category->setName($name);
+        $this->entityManager->persist($category);
+        $this->entityManager->flush();
+
+        return $category;
     }
 }

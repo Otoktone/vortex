@@ -6,69 +6,184 @@
 
 {% block body %}
 {% include "front/user/header.html.twig" %}
-  <section id="feed">
+<section id="feed">
+    <a class="home_button" href="#" onClick="openCustomizeModal()">Customize</a>
     <div class="feedContainer">
-      {% for article in items %}
-        <div class="feedItem" onClick="openModal('{{ article.id }}')">
-            <div>
-                <div class="feedTitle">
-                    <p>{{ article.category|capitalize }}</p>
-                    <h3>{{ article.title|capitalize|slice(0, 100) }}...</h3>
-                </div>
-                <div class="feedImage">
-                    <img src="{{ article.media ?? 'build/images/icons/favicon.png' }}" alt="{{ article.title }}" />
-                </div>
-                <div class="feedContent">
-                    <p>{{ article.content|slice(0, 100) }}...</p>
-                </div>
-                <div class="feedDateContainer">
-                    <div class="feedDate">{{ article.date }}</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal" id="modal-{{ article.id }}">
-            <div class="modalContent">
-                <div class="modalTitle">
-                    <p>{{ article.category|capitalize }}</p>
-                    <h3>{{ article.title|capitalize }}</h3>
-                </div>
-                <div class="modalImage">
-                    <img src="{{ article.media ?? 'build/images/icons/favicon.png' }}" alt="{{ article.title }}" />
-                </div>
+        {% for article in items %}
+            <div class="feedItem" onClick="openModal('{{ article.id }}')">
                 <div>
-                    <p>{{ article.content }}</p>
+                    <div class="feedTitle">
+                        <p>{{ article.category|capitalize }}</p>
+                        <h3>{{ article.title|capitalize|slice(0, 100) }}...</h3>
+                    </div>
+                    <div class="feedImage">
+                        <img src="{{ article.media ?? 'build/images/icons/favicon.png' }}" alt="{{ article.title }}" />
+                    </div>
+                    <div class="feedContent">
+                        <p>{{ article.content|slice(0, 100) }}...</p>
+                    </div>
+                    <div class="feedDateContainer">
+                        <div class="feedDate">{{ article.date }}</div>
+                    </div>
                 </div>
-                <div class="modalDateContainer">
-                    <div class="modalDate">{{ article.date }}</div>
+            </div>
+
+            <div class="modal" id="modal-{{ article.id }}">
+                <div class="modalContent">
+                    <div class="modalTitle">
+                        <p>{{ article.category|capitalize }}</p>
+                        <h3>{{ article.title|capitalize }}</h3>
+                    </div>
+                    <div class="modalImage">
+                        <img src="{{ article.media ?? 'build/images/icons/favicon.png' }}" alt="{{ article.title }}" />
+                    </div>
+                    <div>
+                        <p>{{ article.content }}</p>
+                    </div>
+                    <div class="modalDateContainer">
+                        <div class="modalDate">{{ article.date }}</div>
+                    </div>
+                    <div class="modalLink">
+                        <a class="home_button" href="{{ article.link }}" target="_blank">
+                            <i class="fa-solid fa-external-link"></i> Open article
+                        </a>
+                        <span class="home_button" onClick="addBookmark('{{ article.id }}', {{ userId }})">
+                            <i class="fa-solid fa-bookmark"></i> Add to bookmarks
+                        </span>
+                    </div>
+                    <span class="close" onClick="closeModal('{{ article.id }}')">&times;</span>
                 </div>
-                <div class="modalLink">
-                    <a class="home_button" href="{{ article.link }}" target="_blank">
-                        <i class="fa-solid fa-external-link"></i> Open article
-                    </a>
-                    <span class="home_button" onClick="addBookmark('{{ article.id }}')">
-                        <i class="fa-solid fa-bookmark"></i> Add to bookmarks
-                    </span>
-                </div>
-                <span class="close" onClick="closeModal('{{ article.id }}')">&times;</span>
+            </div>
+        {% endfor %}
+
+        <script>
+        function addBookmark(articleId, userId) {
+            // console.log(userId);
+
+            const data = {
+                userId: userId,
+                articleId: articleId
+            };
+
+            fetch('/api/feed/articles', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        </script>
+
+        <div class="modal" id="customize-modal">
+            <div class="modalContent -categories">
+                <h3>Customize Categories</h3>
+                <form id="category-form">
+                    <ul class="categories-list">
+                        {% if categories is empty %}
+                            <p>No categories available.</p>
+                        {% else %}
+                            {% for category in categories %}
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="categories[]" value="{{ category.id }}">
+                                        {{ category.name }}
+                                    </label>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                    <button type="button" onclick="updateCategories('{{userId}}')">Update dashboard</button>
+                </form>
+                <span class="close" onclick="closeCustomizeModal()">&times;</span>
             </div>
         </div>
-      {% endfor %}
 
-      <script>
-        function openModal(articleId) {
-            const modal = document.getElementById('modal-' + articleId);
-            modal.style.display = 'flex';
-        }
+        <script>
+            function openModal(articleId) {
+                const modal = document.getElementById('modal-' + articleId);
+                modal.style.display = 'flex';
+            }
 
-        function closeModal(articleId) {
-            const modal = document.getElementById('modal-' + articleId);
-            modal.style.display = 'none';
-        }
-      </script>
+            function closeModal(articleId) {
+                const modal = document.getElementById('modal-' + articleId);
+                modal.style.display = 'none';
+            }
+
+            function openCustomizeModal() {
+                const customizeModal = document.getElementById('customize-modal');
+                customizeModal.style.display = 'flex';
+            }
+
+            function closeCustomizeModal() {
+                const customizeModal = document.getElementById('customize-modal');
+                customizeModal.style.display = 'none';
+            }
+
+            // Call openModal() when a feed item is clicked
+            const feedItems = document.querySelectorAll('.feedItem');
+            feedItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const articleId = this.getAttribute('onClick').match(/\d+/)[0];
+                    openModal(articleId);
+                });
+            });
+
+            // Call openCustomizeModal() when the "Customize" button is clicked
+            const customizeButton = document.querySelector('.home_button[href="#"]');
+            customizeButton.addEventListener('click', openCustomizeModal);
+
+            /** CATEGORIES **/
+            function updateCategories(userId) {
+                const form = document.getElementById('category-form');
+                const selectedCategories = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
+
+                // console.log(selectedCategories);
+
+                const data = {
+                    userId: userId,
+                    categories: selectedCategories
+                };
+
+                console.log(data);
+
+                fetch('/api/category/list', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    console.log(response);
+                    return response.text();
+                })
+                .then(result => {
+                    location.reload();
+                    console.log('Response:', result);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+
+        </script>
+    </div>
+</section>
+{% include "front/layout/sidebar.html.twig" %}
+{% endblock %}
 
 
-        {# <div class="modal">
+
+
+{# <div class="modal">
           <div class="modalContent">
             <div class="modalTitle">
               <p>{selectedArticle.category[0].toUpperCase() + selectedArticle.category.substr(1).toLowerCase()}</p>
@@ -90,7 +205,3 @@
             <span class="close" onClick={this.closeModal}>&times;</span>
           </div>
         </div> #}
-    </div>
-  </section>
-  {% include "front/layout/sidebar.html.twig" %}
-{% endblock %}

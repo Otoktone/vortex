@@ -22,6 +22,7 @@ body.modal-open {
     z-index: 1001;
     border-radius: 10px;
     width: 75vw;
+
     ul {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -30,6 +31,7 @@ body.modal-open {
         border-top: none !important;
         list-style: none;
         padding: 0;
+
         li {
             border-top: none !important;
             border-bottom: none !important;
@@ -37,15 +39,18 @@ body.modal-open {
             display: flex;
             align-items: center;
             margin-bottom: 5px;
+
             .checkbox-label {
                 display: flex;
                 align-items: center;
                 width: 100%;
                 cursor: pointer;
+
                 .checkbox-input {
                     margin-right: 10px;
                     width: 20px;
                     height: 20px;
+
                     &:checked {
                         outline: none;
                     }

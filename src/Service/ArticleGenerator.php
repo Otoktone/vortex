@@ -27,6 +27,7 @@ class ArticleGenerator
         $this->feedArticleRepository = $entityManager->getRepository(FeedArticle::class);
     }
 
+
     private function isValidFeedUrl(string $url): bool
     {
         try {
@@ -66,16 +67,6 @@ class ArticleGenerator
                         $categories = $item->getCategories();
                         foreach ($categories as $category) {
                             $categoryTerm = $category->getTerm();
-
-                            $existingCategory = $this->entityManager->getRepository(Category::class)->findOneBy(['name' => $categoryTerm]);
-
-                            // create categories if it doesnt exit yet
-                            if (!$existingCategory) {
-                                $newCategory = new Category();
-                                $newCategory->setName($categoryTerm);
-                                $this->entityManager->persist($newCategory);
-                                $this->entityManager->flush();
-                            }
                         }
                         $mediaImage = null;
                         $content = $item->getContent();
@@ -132,7 +123,25 @@ class ArticleGenerator
                     } else {
                         $newFilteredItem->setMedia(null);
                     }
-                    $newFilteredItem->setCategory($filteredItem['category']);
+
+                    // add the category to the article's categories
+                    $category = $this->entityManager->getRepository(Category::class)->findOneBy(['name' => $filteredItem['category']]);
+                    // create categories associated with filteredItems (articles) and only persist if linked to an article
+                    if (!$category) {
+                        $category = new Category();
+                        $category->setName($filteredItem['category']);
+                    }
+                    if ($category) {
+                        $category->addFeedArticle($newFilteredItem);
+                        $this->entityManager->persist($category);
+                    }
+
+                    $newFilteredItem->setCategory($category->getName());
+
+                    if ($category->getFeedArticles()->isEmpty()) {
+                        $this->entityManager->persist($category);
+                    }
+
                     $this->entityManager->persist($newFilteredItem);
                 }
             }

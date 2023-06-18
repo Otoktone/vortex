@@ -37,9 +37,13 @@ class FeedArticle
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoriteArticles')]
     private Collection $users;
 
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'feedArticles')]
+    private Collection $categories;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -139,6 +143,30 @@ class FeedArticle
     public function removeFavoriteArticle(User $user): self
     {
         $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->categories->removeElement($category);
 
         return $this;
     }

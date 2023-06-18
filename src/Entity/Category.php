@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
@@ -15,6 +17,14 @@ class Category
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
+
+    #[ORM\ManyToMany(targetEntity: FeedArticle::class, mappedBy: 'categories')]
+    private Collection $feedArticles;
+
+    public function __construct()
+    {
+        $this->feedArticles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -29,6 +39,33 @@ class Category
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FeedArticle>
+     */
+    public function getFeedArticles(): Collection
+    {
+        return $this->feedArticles;
+    }
+
+    public function addFeedArticle(FeedArticle $feedArticle): self
+    {
+        if (!$this->feedArticles->contains($feedArticle)) {
+            $this->feedArticles->add($feedArticle);
+            $feedArticle->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeedArticle(FeedArticle $feedArticle): self
+    {
+        if ($this->feedArticles->removeElement($feedArticle)) {
+            $feedArticle->removeCategory($this);
+        }
 
         return $this;
     }

@@ -20,8 +20,38 @@
               <a href="{{ bookmark.link }}" target="_blank"><i class="fa-solid fa-external-link"></i></a>
             </div>
           </div>
+            {% if userId is defined %}
+                <span class="home_button" onClick="removeFavoriteArticle('{{ bookmark.id }}', '{{ userId.id() }}')">
+                    <i class="fa-solid fa-trash"></i> Remove from favorites
+                </span>
+            {% endif %}
         {% endfor %}
       </div>
     </div>
   </section>
+  <script>
+    function removeFavoriteArticle(articleId, userId) {
+      const data = {
+          userId: userId,
+          articleId: articleId
+      };
+
+      fetch('/api/feed/articles/remove', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(result => {
+          console.log(result.message);
+          // when article is removed from bookmarks, page is reloaded
+          location.reload();
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
+    }
+  </script>
 {% endblock %}

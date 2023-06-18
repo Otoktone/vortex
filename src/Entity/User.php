@@ -200,6 +200,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function clearCategories(): self
+    {
+        $this->categories->clear();
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, FeedArticle>
      */

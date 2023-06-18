@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\FeedArticle;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -60,18 +61,31 @@ class FeedArticleRepository extends ServiceEntityRepository
     //        ;
     //    }
 
+    // Find articles related to selected categories
+    public function findByCategories($selectedCategories)
+    {
+        $qb = $this->createQueryBuilder('fa');
+
+        $qb->join('fa.categories', 'c');
+        $qb->andWhere($qb->expr()->in('c.id', ':my_array'))
+            ->setParameter('my_array', $selectedCategories);
+
+        return $qb->getQuery()->getResult();
+    }
+
+
     // DQL: https://symfony.com/doc/5.4/doctrine.html#querying-with-the-query-builder
     public function findAllArticleWithoutUserByDateDQL($date): array
     {
         $qb = $this->createQueryBuilder('fa')
-            ->join('fa.users', 'u')
+            ->leftJoin('fa.users', 'u')
             ->where('u IS NULL')
             ->andWhere('fa.date < :date')
-            ->setParameter('date', $date);
+            ->setParameter('date', $date . ' 00:00:00');
 
         $query = $qb->getQuery();
 
-        return $query->execute();
+        return $query->getResult();
     }
 
     // SQL: https://symfony.com/doc/5.4/doctrine.html#querying-with-sql

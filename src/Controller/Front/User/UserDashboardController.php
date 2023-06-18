@@ -32,9 +32,18 @@ class UserDashboardController extends AbstractController
         $feeds = $feedRepository->findAll();
 
         $feedArticleRepository = $this->entityManager->getRepository(FeedArticle::class);
+        $categoryRepository = $this->entityManager->getRepository(Category::class);
+
         $feedArticles = $feedArticleRepository->findAll();
 
-        $categoryRepository = $this->entityManager->getRepository(Category::class);
+        $selectedCategories = $user->getCategories();
+        if (!$selectedCategories->isEmpty()) {
+            foreach ($selectedCategories as $sc) {
+                $ids[] = $sc->getId();
+            }
+            $feedArticles = $feedArticleRepository->findByCategories($selectedCategories);
+        }
+
         $categories = $categoryRepository->findAll();
 
         shuffle($feedArticles);
@@ -65,26 +74,24 @@ class UserDashboardController extends AbstractController
     #[Route('/api/feed/articles', name: 'feed_bookmark', methods: ['POST'])]
     public function addBookmark(Request $request): JsonResponse
     {
-        $entityManager = $this->getDoctrine()->getManager();
-
         $data = json_decode($request->getContent(), true);
         $userId = $data['userId'];
         $articleId = $data['articleId'];
 
-        $user = $entityManager->getRepository(User::class)->find($userId);
+        $user = $this->entityManager->getRepository(User::class)->find($userId);
 
         if (!$user) {
             return new JsonResponse(['message' => 'User not found'], JsonResponse::HTTP_NOT_FOUND);
         }
 
-        $article = $entityManager->getRepository(FeedArticle::class)->find($articleId);
+        $article = $this->entityManager->getRepository(FeedArticle::class)->find($articleId);
 
         if (!$article) {
             return new JsonResponse(['message' => 'Article not found'], JsonResponse::HTTP_NOT_FOUND);
         }
 
         $user->addFavoriteArticle($article);
-        $entityManager->flush();
+        $this->entityManager->flush();
 
         return new JsonResponse(['message' => 'Article added to bookmarks']);
     }
@@ -102,5 +109,37 @@ class UserDashboardController extends AbstractController
             'user' => $user->getId(),
             'categories' => $categories,
         ]);
+    }
+
+    #[Route('/api/category/list', name: 'update_categories', methods: ['POST'])]
+    public function updateCategories(Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+        $userId = $data['userId'];
+        $selectedCategories = $data['categories'];
+
+        $user = $this->entityManager->getRepository(User::class)->find($userId);
+
+        // Check if selected categories are iterable
+        if (!is_array($selectedCategories)) {
+            return new JsonResponse(['error' => 'Invalid categories data'], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        if (!$user) {
+            return new JsonResponse(['message' => 'User not found'], JsonResponse::HTTP_NOT_FOUND);
+        }
+
+        // Remove existing categories
+        $user->clearCategories();
+
+        foreach ($selectedCategories as $categoryId) {
+            $category = $this->entityManager->getRepository(Category::class)->find($categoryId);
+            if ($category) {
+                $user->addCategory($category);
+            }
+        }
+        $this->entityManager->flush();
+
+        return $this->json(['message' => 'Categories updated successfully']);
     }
 }

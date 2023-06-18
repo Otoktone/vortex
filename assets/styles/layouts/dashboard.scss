@@ -363,6 +363,36 @@
         max-width: 600px;
         border-radius: 4px;
 
+        &.-categories {
+          max-width: none;
+          width: 100%;
+          height: 100%;
+
+          ul.categories-list {
+            display: flex;
+            flex-wrap: wrap;
+          }
+
+          ul.categories-list li {
+            padding: 5px;
+            box-sizing: border-box;
+          }
+
+          // ul {
+          //   display: flex;
+          //   display: grid;
+          //   grid-template-columns: repeat(1, 1fr);
+
+          //   @media (min-width: 768px) {
+          //     grid-template-columns: repeat(2, 1fr);
+          //   }
+
+          //   @media (min-width: 920px) {
+          //     grid-template-columns: repeat(3, 1fr);
+          //   }
+          // }
+        }
+
         .modalTitle {
           margin-bottom: 10px;
 

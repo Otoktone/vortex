@@ -94,7 +94,7 @@
                                 <li>
                                     <label>
                                         <input type="checkbox" name="categories[]" value="{{ category.id }}">
-                                        {{ category.name }}
+                                        {{ category.name|capitalize }}
                                     </label>
                                 </li>
                             {% endfor %}

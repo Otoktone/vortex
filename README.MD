@@ -5,12 +5,12 @@ You can add flux url and generate articles from it.
 
 ## Installation
 
-Install vortex with Docker :
+Install Vortex with Docker :
 
 ```bash
   docker-compose build
 ```
-Run my-project with Docker :
+Run Vortex with Docker :
 
 ```bash
   docker-compose up

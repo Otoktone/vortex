@@ -48,6 +48,14 @@ Clean articles :
   php bin/console app:clean-articles
 ```
 
+## Potential errors
+
+Expected to find class "App\Command\GenerateArticles" :
+
+```bash
+  composer dump-autoload
+```
+
 ## Tech Stack
 
 **Client:** Twig

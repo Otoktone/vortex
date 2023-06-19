@@ -39,7 +39,7 @@ class FeedArticleController extends AbstractCrudController
     }
 
     #[Route('/generate-article/{id}', name: 'generate_article_route', requirements: ['id' => '\d+'], defaults: ['id' => null])]
-    public function generateArticleAction(?int $id = null, ArticleGenerator $articleGenerator)
+    public function generateArticleAction(ArticleGenerator $articleGenerator, ?int $id = null)
     {
 
         if ($id !== null) {

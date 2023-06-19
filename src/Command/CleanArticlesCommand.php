@@ -21,7 +21,7 @@ use Doctrine\ORM\EntityManagerInterface;
     hidden: false,
     aliases: ['app:remove-articles']
 )]
-class CleanArticles extends Command
+class CleanArticlesCommand extends Command
 {
     private EntityManagerInterface $entityManager;
     private FeedArticleRepository $feedArticleRepository;

@@ -163,3 +163,47 @@
     }
   }
 }
+
+
+@media (max-width: 992px) {
+  #home {
+    margin-bottom: 750px;
+
+    main {
+      padding: 200px 0 0 0;
+
+      h2 {
+        letter-spacing: 2px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        width: 85%;
+      }
+
+      img {
+        margin-top: 100px;
+        width: 150vw;
+      }
+    }
+  }
+
+  #frame {
+    padding: 100px 50px;
+  }
+
+  #slider {
+    padding: 100px 50px;
+  }
+
+  footer {
+    height: 750px;
+
+    .footer_info {
+      flex-direction: column;
+    }
+  }
+}

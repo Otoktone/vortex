@@ -101,6 +101,7 @@
                         {% endif %}
                     </ul>
                     <button type="button" onclick="updateCategories('{{userId}}')">Update dashboard</button>
+                    <button type="button" onclick="cleanCategories('{{userId}}')">Reset categories</button>
                 </form>
                 <span class="close" onclick="closeCustomizeModal()">&times;</span>
             </div>
@@ -172,6 +173,17 @@
                 .catch(error => {
                     console.error('Error:', error);
                 });
+            }
+
+            function cleanCategories(userId) {
+                const form = document.getElementById('category-form');
+                const categories = form.querySelectorAll('input[type="checkbox"]');
+
+                categories.forEach(category => {
+                    category.checked = false;
+                });
+
+                updateCategories(userId);
             }
 
         </script>

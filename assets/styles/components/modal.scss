@@ -59,3 +59,8 @@ body.modal-open {
         }
     }
 }
+
+#category-form {
+    max-height: 75vh;
+    overflow-y: auto;
+}

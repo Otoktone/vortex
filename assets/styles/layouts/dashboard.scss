@@ -6,7 +6,6 @@
   top: 0;
   position: fixed;
   width: 100%;
-  z-index: 9999;
 
   #headerDashboardMenu {
     display: none;
@@ -577,6 +576,7 @@
 @media only screen and (max-width: 768px) {
   #headerDashboard {
     left: 0;
+    z-index: 9999;
 
     nav {
       .menu-icon {

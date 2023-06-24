@@ -76,9 +76,13 @@ class DashboardController extends AbstractDashboardController
         $feedArticleRepository = $this->getDoctrine()->getRepository(FeedArticle::class);
         $articleCount = $feedArticleRepository->count([]);
 
+        $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
+        $categoryCount = $categoryRepository->count([]);
+
         return $this->render('back/admin/dashboard.html.twig', [
             'userCount' => $userCount,
             'articleCount' => $articleCount,
+            'categoryCount' => $categoryCount
         ]);
     }
 

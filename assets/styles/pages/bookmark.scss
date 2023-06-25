@@ -57,3 +57,14 @@
         }
     }
 }
+
+@media (max-width: 992px) {
+    #bookmark {
+        margin-left: 0 !important;
+
+        .bookmarkItem {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}

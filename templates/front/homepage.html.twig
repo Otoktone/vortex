@@ -115,7 +115,7 @@
             {% for article in feedArticles|slice(0, 4) %}
                 <div class="carousel_item">
                     <a href="{{ article.link }}">
-                        <img src="{{ article.media }}" alt="{{ article.title  }}" />
+                        <img src="{{ article.media ?? 'build/images/icons/favicon.png' }}" alt="{{ article.title  }}" />
                         <div class="carousel_info">
                         <h3>{{ article.title }}</h3>
                         {# <p>{{ article.content }}</p> #}

@@ -1,7 +1,28 @@
 # Project Vortex
 
-Vortex is a web application about flux aggregation.
-You can add flux url and generate articles from it.
+Vortex is a content aggregation application that keeps you up to date with news and articles related to the world of tech.
+
+It centralizes streams from various reliable sources such as news websites, blogs, and online publications. The application provides real-time updates to keep you informed about the latest IT developments. You can customize your news feed based on your interests and preferences, and even bookmark articles to read later. With a modern UI and multi-platform compatibility, Vortex offers an intuitive tech monitoring experience whether you're using it on desktop, tablet, or mobile.
+
+Explore the world of technology and new advancements with Vortex!
+
+## Stack technique
+
+Symfony 5.4
+End of bug fixes: November 2024
+End of security fixes: November 2025
+
+PHP 8.1
+Active Support Until : 25 Nov 2023
+Security Support Until : 25 Nov 2024
+
+Webpack 1.16
+
+Twig
+
+MySQL8
+
+Docker
 
 ## Installation
 
@@ -36,13 +57,13 @@ Load fixtures :
   php bin/console doctrine:fixtures:load
 ```
 
-Create admin user :
+Generate articles from RSS feeds :
 
 ```bash
   php bin/console app:generate-articles
 ```
 
-Clean articles :
+Clean articles older than 3 months if they are not bookmarked by users :
 
 ```bash
   php bin/console app:clean-articles
@@ -68,6 +89,7 @@ Expected to find class "App\Command\GenerateArticles" :
 
 ## Acknowledgements
 
+- [FeedIo Documentation](https://github.com/alexdebril/feed-io/blob/main/doc/specifications-support.md)
 - [Readme Generator](https://readme.so/)
 - [Choose licence](https://choosealicense.com/licenses/)
 

@@ -81,10 +81,4 @@ class HomepageController extends AbstractController
     {
         return $this->render('front/legal.html.twig');
     }
-
-    #[Route('/cookies', name: 'cookies')]
-    public function cookies(): Response
-    {
-        return $this->render('front/cookies.html.twig');
-    }
 }

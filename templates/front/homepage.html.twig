@@ -47,6 +47,12 @@
         </div>
         <div class="banner_content">
             <div class="icon_box">
+                <img src="{{ asset('build/images/icons/rss/the_verge.png') }}" alt="">
+            </div>
+            <div class="icon_box">
+                <img src="{{ asset('build/images/icons/rss/zdnet_logo.png') }}" alt="">
+            </div>
+            <div class="icon_box">
                 <img src="{{ asset('build/images/icons/rss/cnet.png') }}" alt="">
             </div>
             <div class="icon_box">
@@ -63,12 +69,6 @@
             </div>
             <div class="icon_box">
                 <img src="{{ asset('build/images/icons/rss/zdnet_logo.png') }}" alt="">
-            </div>
-            <div class="icon_box">
-                <img src="{{ asset('build/images/icons/rss/cnet.png') }}" alt="">
-            </div>
-            <div class="icon_box">
-                <img src="{{ asset('build/images/icons/rss/mashable.png') }}" alt="">
             </div>
         </div>
     </section>
@@ -109,6 +109,7 @@
         }
     </script>
 
+    {% if feedArticles %}
     <section id="slider">
         <div class="carousel_container">
             <div class="carousel_items">
@@ -126,6 +127,7 @@
             </div>
         </div>
     </section>
+    {% endif %}
 
 
     {# <span class="loader"></span> #}

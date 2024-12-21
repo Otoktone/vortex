@@ -1,0 +1,38 @@
+{% extends "front/layout/layout.html.twig" %}
+
+{% block javascripts %}
+{{ encore_entry_script_tags('home') }}
+{% endblock %}
+
+{% block body %}
+{% include "front/layout/header.html.twig" %}
+
+{% block content %}
+    <section id="contactSection">
+        <div class="">
+            <div class="">
+                <h1 class="">Vortex | Contact</h1>
+            </div>
+
+            <div class="">
+                <div class=""></div>
+                    <div class="">
+                        <div class="">
+                            <h2>Contact us</h2>
+
+                            {% include 'flash_message.html.twig' %}
+
+                            {{ form_start(contact_form) }}
+                            {{ form_widget(contact_form) }}
+                            {# {{ form_row(contact_form.captchaCode) }} #}
+                            <input class="home_button" id="submit-button" type="submit" value="Submit" />
+                            {{ form_end(contact_form) }}
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% include "front/layout/footer.html.twig" %}
+{% endblock %}

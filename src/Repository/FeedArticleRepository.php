@@ -98,8 +98,7 @@ class FeedArticleRepository extends ServiceEntityRepository
             LEFT JOIN user_favorite_articles u
             ON fa.id = u.feed_article_id
             WHERE u.feed_article_id IS NULL
-            AND fa.date < :date
-            ';
+            AND fa.date < :date';
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
 

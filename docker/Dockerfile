@@ -34,6 +34,12 @@ RUN a2enmod rewrite
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Install PHPUnit using Composer
+# RUN composer global require phpunit/phpunit
+
+# Make PHPUnit executable globally
+# RUN ln -s ~/.composer/vendor/bin/phpunit /usr/local/bin/phpunit
+
 # Copy specific configuration files from the host machine to the corresponding locations inside the Docker container
 COPY docker/apache/apache.conf /etc/apache2/sites-enabled/000-default.conf
 COPY docker/php/php.ini /etc/php/

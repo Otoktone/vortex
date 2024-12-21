@@ -6,7 +6,7 @@ It centralizes streams from various reliable sources such as news websites, blog
 
 Explore the world of technology and new advancements with Vortex!
 
-## Stack technique
+## Tech Stack
 
 Symfony 5.4
 End of bug fixes: November 2024
@@ -76,12 +76,6 @@ Expected to find class "App\Command\GenerateArticles" :
 ```bash
   composer dump-autoload
 ```
-
-## Tech Stack
-
-**Client:** Twig
-
-**Server:** Symfony, Node
 
 ## Authors
 

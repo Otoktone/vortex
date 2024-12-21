@@ -18,6 +18,9 @@ class CustomAccessDeniedHandler implements AccessDeniedHandlerInterface
         $this->router = $router;
     }
 
+    /**
+     * @return null|Response
+     */
     public function handle(Request $request, AccessDeniedException $accessDeniedException)
     {
         $url = $this->router->generate('home');

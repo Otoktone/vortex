@@ -1,7 +1,9 @@
 swiftmailer:
-  url: 'smtp://mailcatcher:1025'
-  # transport: "%env(MAILER_TRANSPORT)%"
-  # host: "%env(MAILER_HOST)%"
-  # username: "%env(MAILER_USER)%"
-  # password: "%env(MAILER_PASSWORD)%"
-  spool: { type: memory }
+    url: '%env(MAILER_URL)%'
+    transport: sendmail
+    auth_mode: login
+    port: 465
+    host: smtp.ionos.fr
+    username: alexandre.desmot@otoktone.fr
+    password: umamd*5tv.F%S*e
+    spool: { type: 'memory' }

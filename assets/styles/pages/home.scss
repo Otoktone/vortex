@@ -107,61 +107,6 @@
       }
     }
   }
-
-  #presentation {
-    div {
-      height: 75vh;
-      display: flex;
-      justify-content: center;
-
-      img {
-        /* ff 3.6+ */
-        background: -moz-radial-gradient(circle at 50% 50%,
-            $violet 0%,
-            $purple 8%,
-            $perfume 17%,
-            $lagoon 22%,
-            #00000030 38%,
-            #00000000 100%);
-
-        /* safari 5.1+,chrome 10+ */
-        background: -webkit-radial-gradient(circle at 50% 50%,
-            $violet 0%,
-            $purple 8%,
-            $perfume 17%,
-            $lagoon 22%,
-            #00000030 38%,
-            #00000000 100%);
-
-        /* opera 11.10+ */
-        background: -o-radial-gradient(circle at 50% 50%,
-            $violet 0%,
-            $purple 8%,
-            $perfume 17%,
-            $lagoon 22%,
-            #00000030 38%,
-            #00000000 100%);
-
-        /* ie 10+ */
-        background: -ms-radial-gradient(circle at 50% 50%,
-            $violet 0%,
-            $purple 8%,
-            $perfume 17%,
-            $lagoon 22%,
-            #00000030 38%,
-            #00000000 100%);
-
-        /* global 92%+ browsers support */
-        background: radial-gradient(circle at 50% 50%,
-            $violet 0%,
-            $purple 8%,
-            $perfume 17%,
-            $lagoon 22%,
-            #00000030 38%,
-            #00000000 100%);
-      }
-    }
-  }
 }
 
 

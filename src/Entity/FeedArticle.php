@@ -29,9 +29,6 @@ class FeedArticle
     private ?string $date = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $category = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $media = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoriteArticles')]
@@ -99,18 +96,6 @@ class FeedArticle
         return $this;
     }
 
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?string $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getMedia(): ?string
     {
         return $this->media;
@@ -169,5 +154,10 @@ class FeedArticle
         $this->categories->removeElement($category);
 
         return $this;
+    }
+
+    public function getCategoryNames(): array
+    {
+        return $this->categories->map(fn($category) => $category->getName())->toArray();
     }
 }

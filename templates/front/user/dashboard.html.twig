@@ -13,7 +13,9 @@
             <div class="feedItem" onClick="openModal('{{ article.id }}')">
                 <div>
                     <div class="feedTitle">
-                        <p>{{ article.category|capitalize }}</p>
+                        {% for category in article.getCategoryNames  %}
+                            <p>{{ category|capitalize }}</p>
+                        {% endfor %}
                         <h3>{{ article.title|capitalize|slice(0, 100) }}...</h3>
                     </div>
                     <div class="feedImage">
@@ -31,7 +33,9 @@
             <div class="modal" id="modal-{{ article.id }}">
                 <div class="modalContent">
                     <div class="modalTitle">
-                        <p>{{ article.category|capitalize }}</p>
+                        {% for category in article.getCategoryNames  %}
+                            <p>{{ category|capitalize }}</p>
+                        {% endfor %}
                         <h3>{{ article.title|capitalize }}</h3>
                     </div>
                     <div class="modalImage">

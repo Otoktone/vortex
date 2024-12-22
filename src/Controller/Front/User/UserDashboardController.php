@@ -34,14 +34,11 @@ class UserDashboardController extends AbstractController
         $feedArticleRepository = $this->entityManager->getRepository(FeedArticle::class);
         $categoryRepository = $this->entityManager->getRepository(Category::class);
 
-        $feedArticles = $feedArticleRepository->findAll();
+        $feedArticles = $feedArticleRepository->findAllWithCategories();
 
         $selectedCategories = $user->getCategories();
         if (!$selectedCategories->isEmpty()) {
-            foreach ($selectedCategories as $sc) {
-                $ids[] = $sc->getId();
-            }
-            $feedArticles = $feedArticleRepository->findByCategories($selectedCategories);
+            $feedArticles = $feedArticleRepository->findByCategories($selectedCategories->toArray());
         }
 
         $categories = $categoryRepository->findAll();

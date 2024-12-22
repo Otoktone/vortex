@@ -40,6 +40,15 @@ class FeedArticleRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllWithCategories(): array
+    {
+        return $this->createQueryBuilder('fa')
+            ->leftJoin('fa.categories', 'c')
+            ->addSelect('c')
+            ->getQuery()
+            ->getResult();
+    }
+
     //     public function deleteArticles(): array
     //    {
 
@@ -62,7 +71,7 @@ class FeedArticleRepository extends ServiceEntityRepository
     //    }
 
     // Find articles related to selected categories
-    public function findByCategories($selectedCategories)
+    public function findByCategories($selectedCategories): array
     {
         $qb = $this->createQueryBuilder('fa');
 
